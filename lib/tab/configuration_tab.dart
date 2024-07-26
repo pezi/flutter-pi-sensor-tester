@@ -70,7 +70,6 @@ class _ConfigurationTabState extends State<ConfigurationTab> {
         onChanged: (bool? value) {
           setState(() {
             gSimulateSensor = value!;
-            print('Checkbox ' + gSimulateSensor.toString());
           });
         },
       ),

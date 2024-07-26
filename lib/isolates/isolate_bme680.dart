@@ -34,7 +34,6 @@ class BME680isolate extends IsolateWrapper {
       exit(0);
     }
     if (cmd == 'quit') {
-      print("quit isolate");
       Isolate.exit();
     }
   }

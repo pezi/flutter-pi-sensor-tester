@@ -56,12 +56,8 @@ class SGP30isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
-        print('1');
         i2c = I2C(gI2C);
-        print('2');
         sgp30 = SGP30(i2c);
-        print('3');
-        print('ok');
         return InitTaskResult(i2c.toJson(), getData());
       } catch (e) {
         return InitTaskResult.error(e.toString());

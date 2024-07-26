@@ -26,7 +26,7 @@ enum DashboardType {
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',
-        this.description = 'dummy';
+        description = 'dummy';
   const DashboardType(this.image, this.description);
   final String image;
   final String description;

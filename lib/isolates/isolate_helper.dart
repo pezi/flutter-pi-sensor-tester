@@ -296,7 +296,6 @@ StreamController<TaskResult> startIsolate(IsolateWrapper isolateClass) {
   isolateStreamController =
       _isolateStreamControllerCache[isolateClass.isolateId];
   if (isolateStreamController == null) {
-    ;
     IsolateHelper isolate = IsolateHelper(
         isolateClass,
         TaskIteration.infinite(),
