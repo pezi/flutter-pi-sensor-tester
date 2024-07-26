@@ -1,9 +1,11 @@
 # flutter-pi-sensor-tester
 
-Overview 
+UI-Overview 
+
 ![alt text](https://raw.githubusercontent.com/pezi/dart_periphery_img/main/flutter_sensor_tester.gif "Flutter Sensor Tester")
 
 Test setup with a Raspberry Pi 3 with attached leds, sensors and a small touch screen runnung the led demo.
+
 ![alt text](https://github.com/pezi/dart_periphery_img/blob/main/touch_screen_small.jpg?raw=true "Touch screen")
 
 [Vidoe snippet for reordering UI elements](https://github.com/pezi/dart_periphery_img/raw/main/reoder.mp4)
@@ -43,8 +45,8 @@ with the re-init of the periphery C-library  in context of the isolates. Investi
 **Starting**
 The isolate related code can be found here:
 
-* [/isolates/isolate_helper.dart](/isolates/isolate_helper.dart)
-* [/isolates/isolate_factory.dart](/isolates/isolate_factory.dart)
+* [/isolates/isolate_helper.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_helper.dart)
+* [/isolates/isolate_factory.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_factory.dart)
 
 
 **Next steps:**

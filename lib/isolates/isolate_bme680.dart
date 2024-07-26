@@ -80,10 +80,8 @@ class BME680isolate extends IsolateWrapper {
       }
     }
 
-    // TODO Test error
-    //return InitTaskResult(
-    //    true, '', IsolateError(TaskMethod.init, "isolate error").toJson());
     return InitTaskResult("{}", getSimulatedData());
+    // Test error
     // return InitTaskResult.error("test");
   }
 
