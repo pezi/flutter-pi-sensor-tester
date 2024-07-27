@@ -37,8 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   async: ^2.11.0
   intl: ^0.19.0
-  dart_periphery:
-    path: ../dart_periphery
+  dart_periphery 0.9.6:
   flutter_reorderable_grid_view: ^5.0.1
   convex_bottom_bar: ^3.2.0
   url_launcher: ^6.2.5

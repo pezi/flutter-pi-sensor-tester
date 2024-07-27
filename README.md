@@ -1,5 +1,7 @@
 # flutter-pi-sensor-tester
 
+This project bases on [dart_periphery](https://github.com/pezi/dart_periphery).
+
 UI-Overview 
 
 ![alt text](https://raw.githubusercontent.com/pezi/dart_periphery_img/main/flutter_sensor_tester.gif "Flutter Sensor Tester")
