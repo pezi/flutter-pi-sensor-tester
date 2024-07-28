@@ -6,7 +6,7 @@ UI-Overview
 
 ![alt text](https://raw.githubusercontent.com/pezi/dart_periphery_img/main/flutter_sensor_tester.gif "Flutter Sensor Tester")
 
-Test setup with a Raspberry Pi 3 with attached leds, sensors and a small touch screen running the led demo.
+Test setup with a Raspberry Pi 3 with attached LEDs, sensors and a small touch screen running the led demo.
 
 ![alt text](https://github.com/pezi/dart_periphery_img/blob/main/touch_screen_small.jpg?raw=true "Touch screen")
 
@@ -32,6 +32,7 @@ to the Flutter UI. This model is used for actuator control, such as operating an
 
 **Import hints:**
 * The project is currently in its early stages, and development is ongoing including API changes.
+* For using real hardware, go to the configuration panel and disable the simulation mode checkbox.
 * Dart isolates can be tricky compared to programming languages like Java. Therefore, the first version
 of the API may appear somewhat unrefined and incomplete.
 * The project code is free to use, but be aware, the icons from [Flaticon](https://www.flaticon.com) must attribute
