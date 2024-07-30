@@ -33,6 +33,7 @@ to the Flutter UI. This model is used for actuator control, such as operating an
 **Import hints:**
 * The project is currently in its early stages, and development is ongoing including API changes.
 * For using real hardware, go to the configuration panel and disable the simulation mode checkbox.
+* Application can be build for the other Flutter desktop variants: MacOS, Windows and Linux and tested in the simulation mode.
 * Dart isolates can be tricky compared to programming languages like Java. Therefore, the first version
 of the API may appear somewhat unrefined and incomplete.
 * The project code is free to use, but be aware, the icons from [Flaticon](https://www.flaticon.com) must attribute
