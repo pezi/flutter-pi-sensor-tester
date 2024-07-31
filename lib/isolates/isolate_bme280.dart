@@ -49,8 +49,16 @@ class BME280isolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       try {
         i2c.dispose();
-      } catch (e) {
-        // we can do nothing
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
       }
     }
     if (cmd == 'exit') {
@@ -72,7 +80,17 @@ class BME280isolate extends IsolateWrapper {
         i2c = I2C(gI2C);
         bme280 = BME280(i2c);
         return InitTaskResult(i2c.toJson(), getData());
-      } catch (e) {
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+        return InitTaskResult.error(e.toString());
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
         return InitTaskResult.error(e.toString());
       }
     }
@@ -96,9 +114,16 @@ class BME280isolate extends IsolateWrapper {
       }
       ++counter;
       return MainTaskResult(false, m);
-    } catch (e) {
+    } on Exception catch (e, s) {
       if (kDebugMode) {
-        print('Sensor error: $e');
+        print('Exception details:\n $e');
+        print('Stack trace:\n $s');
+      }
+      return MainTaskResult.error(true, e.toString());
+    } on Error catch (e, s) {
+      if (kDebugMode) {
+        print('Error details:\n $e');
+        print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     }

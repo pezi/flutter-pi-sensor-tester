@@ -11,7 +11,7 @@ import 'isolate_leds.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 
-/// Constructs a class by name
+/// Constructs a class by name. This construction enables an
 class IsolateClassFactory {
   static final Map<String,
       IsolateWrapper Function(String isolateId, Object data)> _constructors = {

@@ -13,8 +13,8 @@ import 'isolate_factory.dart';
 
 /// generic task result
 abstract class TaskResult {
-  bool error;
-  Map<String, dynamic>? data;
+  final bool error;
+  final Map<String, dynamic>? data;
   TaskResult(this.error, [this.data]);
 }
 
@@ -22,7 +22,8 @@ abstract class TaskResult {
 class InitTaskResult extends TaskResult {
   String json;
 
-  /// Return value of the init task, [error] signals an error, [json] represents the device configuration and the optional user [data].
+  /// Return value of the init task, [error] signals an error, [json] represents
+  /// the device configuration and the optional user [data].
   InitTaskResult(this.json, [Map<String, dynamic>? data]) : super(false, data);
 
   InitTaskResult.error(String error)
@@ -37,7 +38,8 @@ class InitTaskResult extends TaskResult {
 class MainTaskResult extends TaskResult {
   bool exit;
 
-  /// Return value of a main task, [error] signals an error, [exit] to quit the main loop and the optional user [data].
+  /// Return value of a main task, [error] signals an error, [exit] to quit the
+  /// main loop and the optional user [data].
   MainTaskResult(this.exit, [Map<String, dynamic>? data]) : super(false, data);
   MainTaskResult.error(this.exit, String error)
       : super(true, IsolateError(TaskMethod.init, error).toJson());
@@ -89,7 +91,7 @@ abstract class IsolateWrapper {
     throw UnimplementedError("exit() - not implemented");
   }
 
-  /// Process [data] from the isolate initiator.
+  /// Processes [data] from the isolate initiator.
   /// Do not perform long lasting operations in the method
   /// which blocks the main task!
   void processData(SendPort sendPort, Object data) {}
@@ -123,12 +125,12 @@ class IsolateError {
       {'method': method.index, 'milliSecs': timestamp, "error": error};
 }
 
-/// Run an [IsolateWrapper] based class as an isolate
+/// Runs an [IsolateWrapper] based class as an isolate
 class IsolateHelper {
-  IsolateWrapper className;
-  TaskIteration iterationTask;
-  Object initialData;
-  String isolateId;
+  final IsolateWrapper className;
+  final TaskIteration iterationTask;
+  final Object initialData;
+  final String isolateId;
 
   Isolate? isolate;
   String? json;
@@ -230,6 +232,7 @@ class IsolateHelper {
 
       // wait only for commands from isolate initiator
       if (classInfo['listeningMode'] as bool) {
+        // infinite loop
         while (true) {
           await Future.delayed(const Duration(days: 365));
         }

@@ -65,7 +65,7 @@ class _ConfigurationTabState extends State<ConfigurationTab> {
       ),
       CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
-        title: const Text("Demo mode"),
+        title: const Text("Simulation mode"),
         value: gSimulateSensor,
         onChanged: (bool? value) {
           setState(() {
