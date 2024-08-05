@@ -12,6 +12,11 @@ import 'package:flutter/foundation.dart';
 import '../constants.dart';
 import 'isolate_helper.dart';
 
+// measurement pause in sec
+const int measurementPause = 2;
+
+/// Isolate to handle a BME680 sensor: temperature, humidity pressure and
+/// air quality
 class BME680isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
@@ -26,8 +31,16 @@ class BME680isolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       try {
         i2c.dispose();
-      } catch (e) {
-        // we can do nothing
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
       }
     }
     if (cmd == 'exit') {
@@ -38,6 +51,7 @@ class BME680isolate extends IsolateWrapper {
     }
   }
 
+  /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
     var result = bme680.getValues();
     bme680.getHumidityOversample();
@@ -53,6 +67,7 @@ class BME680isolate extends IsolateWrapper {
     return values;
   }
 
+  /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
     var values = <String, dynamic>{};
     values['c'] = counter;
@@ -75,7 +90,17 @@ class BME680isolate extends IsolateWrapper {
         i2c = I2C(gI2C);
         bme680 = BME680(i2c);
         return InitTaskResult(i2c.toJson(), getData());
-      } catch (e) {
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+        return InitTaskResult.error(e.toString());
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
         return InitTaskResult.error(e.toString());
       }
     }
@@ -97,13 +122,20 @@ class BME680isolate extends IsolateWrapper {
       }
 
       if (counter != 0) {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: measurementPause));
       }
       ++counter;
       return MainTaskResult(false, m);
-    } catch (e) {
+    } on Exception catch (e, s) {
       if (kDebugMode) {
-        print('Sensor error: $e');
+        print('Exception details:\n $e');
+        print('Stack trace:\n $s');
+      }
+      return MainTaskResult.error(true, e.toString());
+    } on Error catch (e, s) {
+      if (kDebugMode) {
+        print('Error details:\n $e');
+        print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     }

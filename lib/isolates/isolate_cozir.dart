@@ -11,6 +11,10 @@ import 'package:flutter/foundation.dart';
 
 import 'isolate_helper.dart';
 
+// measurement pause in sec
+const int measurementPause = 10;
+
+/// Isolate to handle a CozIr CO₂ sensor: temperature, humidity and CO₂
 class CozIRisolate extends IsolateWrapper {
   int counter = 1;
   late Serial serial;
@@ -28,10 +32,11 @@ class CozIRisolate extends IsolateWrapper {
     int pos = line.indexOf("H") + 2;
     values['h'] = double.parse(line.substring(pos, pos + 5)) / 10.0;
 
+    // temperature
     pos = line.indexOf("T") + 2;
     values['t'] = (double.parse(line.substring(pos, pos + 5)) - 1000) / 10.0;
 
-    // CO2 ppm
+    // CO₂ ppm
     pos = line.indexOf("Z") + 2;
     values['co2'] = (int.parse(line.substring(pos, pos + 5).trim())) ~/ 10;
 
@@ -44,8 +49,16 @@ class CozIRisolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       try {
         serial.dispose();
-      } catch (e) {
-        // we can do nothing
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
       }
     }
     if (cmd == 'exit') {
@@ -56,6 +69,7 @@ class CozIRisolate extends IsolateWrapper {
     }
   }
 
+  /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
     serial.writeString('Q\r\n');
     var event = serial.read(256, 1000);
@@ -65,6 +79,7 @@ class CozIRisolate extends IsolateWrapper {
     return values;
   }
 
+  /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
     var values = <String, dynamic>{};
     values['c'] = counter;
@@ -105,7 +120,17 @@ class CozIRisolate extends IsolateWrapper {
         var map = getData();
         sleep(const Duration(seconds: 5));
         return InitTaskResult(serial.toJson(), map);
-      } catch (e, _) {
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+        return InitTaskResult.error(e.toString());
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
         return InitTaskResult.error(e.toString());
       }
     }
@@ -125,13 +150,20 @@ class CozIRisolate extends IsolateWrapper {
       }
 
       if (counter != 0) {
-        await Future.delayed(const Duration(seconds: 10));
+        await Future.delayed(const Duration(seconds: measurementPause));
       }
       ++counter;
       return MainTaskResult(false, m);
-    } catch (e) {
+    } on Exception catch (e, s) {
       if (kDebugMode) {
-        print('Sensor error: $e');
+        print('Exception details:\n $e');
+        print('Stack trace:\n $s');
+      }
+      return MainTaskResult.error(true, e.toString());
+    } on Error catch (e, s) {
+      if (kDebugMode) {
+        print('Error details:\n $e');
+        print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     }
