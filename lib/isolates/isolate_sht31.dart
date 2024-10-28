@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import '../constants.dart';
 import 'isolate_helper.dart';
 
+/// Isolate to handle a SHT31 sensor: temperature and humidity
 class SHT31isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
@@ -20,6 +21,33 @@ class SHT31isolate extends IsolateWrapper {
   SHT31isolate(super.isolateId, bool super.simulation);
   SHT31isolate.empty() : super("", "");
 
+  @override
+  void processData(SendPort sendPort, Object data) {
+    String cmd = data as String;
+    if (!(initialData as bool)) {
+      try {
+        i2c.dispose();
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
+      }
+    }
+    if (cmd == 'exit') {
+      exit(0);
+    }
+    if (cmd == 'quit') {
+      Isolate.exit();
+    }
+  }
+
+  /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
     var result = sht31.getValues();
 
@@ -32,24 +60,7 @@ class SHT31isolate extends IsolateWrapper {
     return values;
   }
 
-  @override
-  void processData(SendPort sendPort, Object data) {
-    String cmd = data as String;
-    if (!(initialData as bool)) {
-      try {
-        i2c.dispose();
-      } catch (e) {
-        // we can do nothing
-      }
-    }
-    if (cmd == 'exit') {
-      exit(0);
-    }
-    if (cmd == 'quit') {
-      Isolate.exit();
-    }
-  }
-
+  /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
     var values = <String, dynamic>{};
     values['c'] = counter;
@@ -67,10 +78,21 @@ class SHT31isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
+        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         sht31 = SHT31(i2c);
         return InitTaskResult(i2c.toJson(), getData());
-      } catch (e) {
+      } on Exception catch (e, s) {
+        if (kDebugMode) {
+          print('Exception details:\n $e');
+          print('Stack trace:\n $s');
+        }
+        return InitTaskResult.error(e.toString());
+      } on Error catch (e, s) {
+        if (kDebugMode) {
+          print('Error details:\n $e');
+          print('Stack trace:\n $s');
+        }
         return InitTaskResult.error(e.toString());
       }
     }
@@ -94,9 +116,16 @@ class SHT31isolate extends IsolateWrapper {
       }
       ++counter;
       return MainTaskResult(false, m);
-    } catch (e) {
+    } on Exception catch (e, s) {
       if (kDebugMode) {
-        print('Sensor error: $e');
+        print('Exception details:\n $e');
+        print('Stack trace:\n $s');
+      }
+      return MainTaskResult.error(true, e.toString());
+    } on Error catch (e, s) {
+      if (kDebugMode) {
+        print('Error details:\n $e');
+        print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     }

@@ -98,6 +98,7 @@ class CozIRisolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
+        reuseTmpFileLibrary(true);
         serial = Serial('/dev/serial0', Baudrate.b9600);
         if (kDebugMode) {
           print('Serial interface info: ${serial.getSerialInfo()}');

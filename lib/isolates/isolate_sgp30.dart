@@ -56,6 +56,7 @@ class SGP30isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
+        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         sgp30 = SGP30(i2c);
         return InitTaskResult(i2c.toJson(), getData());

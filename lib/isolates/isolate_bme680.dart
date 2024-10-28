@@ -87,6 +87,7 @@ class BME680isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
+        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         bme680 = BME680(i2c);
         return InitTaskResult(i2c.toJson(), getData());

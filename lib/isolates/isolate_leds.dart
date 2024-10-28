@@ -57,6 +57,7 @@ class LedsIsolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
+        reuseTmpFileLibrary(true);
         gpioMap[LedColor.red] = GPIO(18, GPIOdirection.gpioDirOut);
         gpioMap[LedColor.yellow] = GPIO(16, GPIOdirection.gpioDirOut);
         gpioMap[LedColor.green] = GPIO(5, GPIOdirection.gpioDirOut);
