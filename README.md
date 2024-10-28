@@ -42,9 +42,20 @@ the creator of the icon - for further details see the AboutTab with an automated
 * Used colors looks on your device perhaps a little strange. This demo was tested on a small external 
 touch screen with a limited color dynamic. The used colors are result of this restriction.
 
-**Known errors:**
-Demo crashes in hardware mode after closing a demo and open the next demo. There is a problem 
-with the re-init of the periphery C-library  in context of the isolates. Investigations are ongoing.
+**Known problems:**
+To avoid application crashes when using Dart periphery methods within an isolate, it’s essential to call `reuseTmpFileLibrary(true)` before any periphery method invocations.
+
+```
+reuseTmpFileLibrary(true);
+i2c = I2C(gI2C);
+sgp30 = SGP30(i2c);
+```
+
+Dart periphery temporarily stores a copy of the c-periphery library in the system’s temp directory. If an isolate attempts this initialization again without the reuseTmpFileLibrary(true) setting, it will cause the application to crash, with no opportunity to catch the error. 
+
+As an alternative solution, you can use
+`void loadLibFromFlutterAssetDir(bool load)`  to address this issue.
+For more details, refer to the documentation [here](https://github.com/pezi/dart_periphery?tab=readme-ov-file#flutter-pi).  
 
 **Starting**
 The isolate related code can be found here:
