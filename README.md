@@ -1,4 +1,4 @@
-# flutter-pi-sensor-tester
+# flutter_pi_sensor_tester
 
 This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the Raspberry Pi.
 
@@ -15,7 +15,7 @@ Test setup with a Raspberry Pi 3 with attached LEDs, sensors and a small touch s
 
 ## Overview
 
-This subproject of [dart-periphery](https://pub.dev/packages/dart_periphery) based on [flutter-pi](https://github.com/ardera/flutter-pi) implements an isolate/stream architecture 
+This subproject of [dart_periphery](https://pub.dev/packages/dart_periphery) based on [flutter-pi](https://github.com/ardera/flutter-pi) implements an isolate/stream architecture 
 designed to transfer sensor data from an isolate to the Flutter UI. 
 
 **Isolate Interface**: This consists of the steps InitTask, MainTask, and ExitTask, along with a 
