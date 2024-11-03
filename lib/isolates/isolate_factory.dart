@@ -2,6 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/cupertino.dart';
+import 'package:isolate/isolates/isolate_gesture.dart';
+
 import 'isolate_bme280.dart';
 import 'isolate_bme680.dart';
 import 'isolate_cozir.dart';
@@ -27,6 +30,9 @@ class IsolateClassFactory {
     SGP30isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             SGP30isolate(isolateId, data as bool),
+    GestureDetectorIsolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            GestureDetectorIsolate(isolateId, data as bool),
     CozIRisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             CozIRisolate(isolateId, data as bool),

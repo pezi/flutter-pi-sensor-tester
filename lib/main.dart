@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:isolate/components/error_box.dart';
 import 'package:isolate/dashboards/dashboard_bme680.dart';
 import 'package:isolate/dashboards/dashboard_cozir.dart';
+import 'package:isolate/dashboards/dashboard_gesture.dart';
 import 'package:isolate/dashboards/dashboard_leds.dart';
 import 'package:isolate/dashboards/dashboard_overview.dart';
 import 'package:isolate/isolates/isolate_cozir.dart';
@@ -27,6 +28,7 @@ import 'dashboards/dashboard_sht31.dart';
 import 'isolates/isolate_bme280.dart';
 import 'isolates/isolate_bme680.dart';
 import 'isolates/isolate_demo.dart';
+import 'isolates/isolate_gesture.dart';
 import 'isolates/isolate_helper.dart';
 import 'isolates/isolate_sgp30.dart';
 import 'isolates/isolate_sht31.dart';
@@ -112,6 +114,11 @@ Widget _createDashboard(ParentUpdateCallback callback) {
     case DashboardType.sht31:
       return DashboardSHT31(
         isolateWrapper: SHT31isolate(DashboardType.sht31.name, gSimulateSensor),
+      );
+    case DashboardType.gesture:
+      return DashboardGesture(
+        isolateWrapper:
+            GestureDetectorIsolate(DashboardType.gesture.name, gSimulateSensor),
       );
     case DashboardType.sgp30:
       return DashboardSGP30(

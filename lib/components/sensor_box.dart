@@ -183,6 +183,15 @@ class SensorBox extends StatelessWidget {
   }
 }
 
+class GestureDetector extends SensorBox {
+  GestureDetector(
+      {super.key, required super.imageVersion, required Gesture gesture})
+      : super(
+            image: SensorImage.gesture,
+            formattedValue: gesture.name,
+            rawValue: gesture.index);
+}
+
 class Thermometer extends SensorBox {
   Thermometer(
       {super.key, required super.imageVersion, required double temperature})
