@@ -89,9 +89,15 @@ class SensorBox extends StatelessWidget {
         style: gSensorBoxTextStyle,
       ));
     } else {
+      TextStyle style;
+      if (image == SensorImage.gesture) {
+        style = gSensorBoxTextStyle.copyWith(fontSize: 25);
+      } else {
+        style = gSensorBoxTextStyle;
+      }
       line.add(Text(
         formattedValue,
-        style: gSensorBoxTextStyle,
+        style: style,
       ));
     }
 

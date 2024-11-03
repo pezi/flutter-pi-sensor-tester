@@ -23,7 +23,7 @@ enum DashboardType {
   sgp30('iaq_v1.png', 'Air quality sensor'),
   cozir('co2_v2.png', 'Serial CO₂ sensor'),
   leds('rgb.png', 'GPIO based actuator demo'),
-  gesture('gesture_v1.png', 'Grove gesture sensor');
+  gesture('gesture_v2.png', 'Grove gesture sensor');
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',

@@ -29,7 +29,7 @@ class DashboardGesture extends Dashboard {
       key: const ValueKey("1"),
       sensor: "Grove Gesture Sensor",
       interface: "I2C Bus: ${gI2C.toString()}",
-      icon: 'gesture_v1.png',
+      icon: 'gesture_v2.png',
       counter: counter,
     );
     widgetMap[2] = const Clock(key: ValueKey("2"));
