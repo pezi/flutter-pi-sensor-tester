@@ -1,6 +1,6 @@
 # flutter-pi-sensor-tester
 
-This project bases on [dart_periphery](https://github.com/pezi/dart_periphery) and the light-weight [Flutter Engine Embedder](https://github.com/ardera/flutter-pi) for Raspberry Pi.
+This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the Raspberry Pi.
 
 UI-Overview 
 
