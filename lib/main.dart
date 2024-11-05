@@ -23,6 +23,7 @@ import 'components/waiting_for_data.dart';
 import 'constants.dart';
 import 'dashboards/dashboard_bme280.dart';
 import 'dashboards/dashboard_demo.dart';
+import 'dashboards/dashboard_mcp9808.dart';
 import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
 import 'isolates/isolate_bme280.dart';
@@ -30,6 +31,7 @@ import 'isolates/isolate_bme680.dart';
 import 'isolates/isolate_demo.dart';
 import 'isolates/isolate_gesture.dart';
 import 'isolates/isolate_helper.dart';
+import 'isolates/isolate_mcp9808.dart';
 import 'isolates/isolate_sgp30.dart';
 import 'isolates/isolate_sht31.dart';
 
@@ -115,6 +117,12 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       return DashboardSHT31(
         isolateWrapper: SHT31isolate(DashboardType.sht31.name, gSimulateSensor),
       );
+    case DashboardType.mcp9808:
+      return DashboardMCP9808(
+        isolateWrapper:
+            MCP9808isolate(DashboardType.mcp9808.name, gSimulateSensor),
+      );
+
     case DashboardType.gesture:
       return DashboardGesture(
         isolateWrapper:
