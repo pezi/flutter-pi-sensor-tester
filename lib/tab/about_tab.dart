@@ -34,7 +34,7 @@ class AboutTab extends StatelessWidget {
           Icons.email_outlined,
           color: Color(0xff03589D),
         ),
-        email: 'peter.sauer@treedb.at',
+        email: 'peter.sauer@flutterdev.at',
       ),
       const InfoCard.url(
         widget: Icon(
