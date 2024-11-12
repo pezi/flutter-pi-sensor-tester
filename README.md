@@ -46,15 +46,21 @@ icons including their attribution link.
 * Used colors looks on your device perhaps a little strange. This demo was tested on a small 
 external touch screen with a limited color dynamic. The used colors are result of this restriction.
 
-**Known problems:**
-To avoid application crashes when using Dart periphery methods within an isolate, it’s essential to 
-call `reuseTmpFileLibrary(true)` before any periphery method invocations.
+**Dart isolates:**
+Starting from version *0.9.7*, the default library handling mechanism creates a temporary library
+file, named in the format `pid_1456_libperiphery_arm.so`. The unique process ID for each isolate
+prevents repeated creation of the temporary library, avoiding crashes caused by overwriting an
+actively used library.
+
+Library setup override methods, such as:
 
 ```
-reuseTmpFileLibrary(true);
-i2c = I2C(gI2C);
-sgp30 = SGP30(i2c);
+void useSharedLibray();
+void setCustomLibrary(String absolutePath);
 ```
+
+must be called separately within each isolate. This is necessary because each isolate initializes
+Dart Periphery independently.
 
 Dart periphery temporarily stores a copy of the c-periphery library in the system’s temp directory. 
 If an isolate attempts this initialization again without the reuseTmpFileLibrary(true) setting, it 
