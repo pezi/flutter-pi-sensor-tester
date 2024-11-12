@@ -24,7 +24,8 @@ enum DashboardType {
   cozir('co2_v2.png', 'Serial CO₂ sensor'),
   leds('rgb.png', 'GPIO based actuator demo'),
   gesture('gesture_v2.png', 'Grove gesture sensor'),
-  mcp9808('thermometer_v5.png', 'Temperature');
+  mcp9808('thermometer_v5.png', 'Temperature'),
+  mlx90615('thermometer_v7.png', 'Temperature');
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',

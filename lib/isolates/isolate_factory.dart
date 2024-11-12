@@ -12,6 +12,7 @@ import 'isolate_demo.dart';
 import 'isolate_helper.dart';
 import 'isolate_leds.dart';
 import 'isolate_mcp9808.dart';
+import 'isolate_mlx90615.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 
@@ -34,6 +35,9 @@ class IsolateClassFactory {
     MCP9808isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             MCP9808isolate(isolateId, data as bool),
+    MLX90615isolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            MLX90615isolate(isolateId, data as bool),
     GestureDetectorIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             GestureDetectorIsolate(isolateId, data as bool),

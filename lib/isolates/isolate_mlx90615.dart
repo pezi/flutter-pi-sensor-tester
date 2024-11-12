@@ -12,14 +12,14 @@ import 'package:flutter/foundation.dart';
 import '../constants.dart';
 import 'isolate_helper.dart';
 
-/// Isolate to handle a MCP9808 sensor: temperature and humidity
-class MCP9808isolate extends IsolateWrapper {
+/// Isolate to handle a MLX90615 sensor: temperature and humidity
+class MLX90615isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
-  late MCP9808 mcp9808;
+  late MLX90615 mlx90615;
 
-  MCP9808isolate(super.isolateId, bool super.simulation);
-  MCP9808isolate.empty() : super("", "");
+  MLX90615isolate(super.isolateId, bool super.simulation);
+  MLX90615isolate.empty() : super("", "");
 
   @override
   void processData(SendPort sendPort, Object data) {
@@ -49,12 +49,12 @@ class MCP9808isolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var result = mcp9808.getValue();
+    var result = mlx90615.getObjectTemperature();
 
     var values = <String, dynamic>{};
 
     values['c'] = counter;
-    values['t'] = result.temperature;
+    values['t'] = result;
 
     return values;
   }
@@ -78,7 +78,7 @@ class MCP9808isolate extends IsolateWrapper {
       try {
         reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
-        mcp9808 = MCP9808(i2c);
+        mlx90615 = MLX90615(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
         if (kDebugMode) {
