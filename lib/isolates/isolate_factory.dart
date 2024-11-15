@@ -13,10 +13,11 @@ import 'isolate_helper.dart';
 import 'isolate_leds.dart';
 import 'isolate_mcp9808.dart';
 import 'isolate_mlx90615.dart';
+import 'isolate_sdc30.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 
-/// Constructs a class by name. This construction enables an
+/// Constructs a class by name.
 class IsolateClassFactory {
   static final Map<String,
       IsolateWrapper Function(String isolateId, Object data)> _constructors = {
@@ -48,6 +49,9 @@ class IsolateClassFactory {
         (String isolateId, Object data) => LedsIsolate(isolateId, data as bool),
     DemoIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) => DemoIsolate(isolateId, data),
+    SDC30isolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            SDC30isolate(isolateId, data as bool),
   };
 
   static IsolateWrapper createInstance(

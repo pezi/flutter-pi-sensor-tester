@@ -25,6 +25,7 @@ import 'dashboards/dashboard_bme280.dart';
 import 'dashboards/dashboard_demo.dart';
 import 'dashboards/dashboard_mcp9808.dart';
 import 'dashboards/dashboard_mlx90615.dart';
+import 'dashboards/dashboard_sdc30.dart';
 import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
 import 'isolates/isolate_bme280.dart';
@@ -34,6 +35,7 @@ import 'isolates/isolate_gesture.dart';
 import 'isolates/isolate_helper.dart';
 import 'isolates/isolate_mcp9808.dart';
 import 'isolates/isolate_mlx90615.dart';
+import 'isolates/isolate_sdc30.dart';
 import 'isolates/isolate_sgp30.dart';
 import 'isolates/isolate_sht31.dart';
 
@@ -128,6 +130,10 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       return DashboardMLX90615(
         isolateWrapper:
             MLX90615isolate(DashboardType.mlx90615.name, gSimulateSensor),
+      );
+    case DashboardType.sdc30:
+      return DashboardSDC30(
+        isolateWrapper: SDC30isolate(DashboardType.sdc30.name, gSimulateSensor),
       );
     case DashboardType.gesture:
       return DashboardGesture(

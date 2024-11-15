@@ -13,17 +13,17 @@ import '../constants.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
-const int measurementPause = 2;
+const int measurementPause = 4;
 
-/// Isolate to handle a BME680 sensor: temperature, humidity, pressure and
+/// Isolate to handle a SCD30 sensor: CO2, temperature and humidity
 /// air quality
-class BME680isolate extends IsolateWrapper {
+class SDC30isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
-  late BME680 bme680;
+  late SDC30 sdc30;
 
-  BME680isolate(super.isolateId, bool super.simulation);
-  BME680isolate.empty() : super.empty();
+  SDC30isolate(super.isolateId, bool super.simulation);
+  SDC30isolate.empty() : super.empty();
 
   @override
   void processData(SendPort sendPort, Object data) {
@@ -53,16 +53,14 @@ class BME680isolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var result = bme680.getValues();
-    bme680.getHumidityOversample();
+    var result = sdc30.getValues();
 
     var values = <String, dynamic>{};
 
     values['c'] = counter;
     values['t'] = result.temperature;
     values['h'] = result.humidity;
-    values['p'] = result.pressure;
-    values['a'] = result.airQualityScore.toInt();
+    values['co2'] = result.co2;
 
     return values;
   }
@@ -73,8 +71,7 @@ class BME680isolate extends IsolateWrapper {
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();
-    values['p'] = 1100.0 + Random().nextInt(10);
-    values['a'] = 50 + Random().nextInt(10);
+    values['co2'] = 1100.0 + Random().nextInt(10);
 
     return values;
   }
@@ -89,7 +86,7 @@ class BME680isolate extends IsolateWrapper {
       try {
         reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
-        bme680 = BME680(i2c);
+        sdc30 = SDC30(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
         if (kDebugMode) {
