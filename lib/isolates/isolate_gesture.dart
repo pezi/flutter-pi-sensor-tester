@@ -87,7 +87,6 @@ class GestureDetectorIsolate extends IsolateWrapper {
     // real hardware in use?
     if (!(initialData as bool)) {
       try {
-        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         gesture = GestureSensor(i2c);
         return InitTaskResult(i2c.toJson(), getData());

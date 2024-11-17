@@ -33,7 +33,7 @@ class DashboardSDC30 extends Dashboard {
         CO2(key: const ValueKey("2"), imageVersion: 2, co2: co2.toInt());
     widgetMap[3] = SensorImageBox(
       key: const ValueKey("3"),
-      sensor: "Sensor: SDC3ß",
+      sensor: "Sensor: SDC30",
       interface: "I2C Bus: ${gI2C.toString()}",
       icon: 'sensor_v3.png',
       counter: counter,

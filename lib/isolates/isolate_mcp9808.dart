@@ -76,7 +76,6 @@ class MCP9808isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
-        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         mcp9808 = MCP9808(i2c);
         return InitTaskResult(i2c.toJson(), getData());

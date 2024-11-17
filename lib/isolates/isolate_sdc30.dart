@@ -53,8 +53,12 @@ class SDC30isolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var result = sdc30.getValues();
-
+    late SDC30result result;
+    try {
+      result = sdc30.getValues();
+    } on Exception catch (e) {
+      result = SDC30result.empty();
+    }
     var values = <String, dynamic>{};
 
     values['c'] = counter;
@@ -84,7 +88,6 @@ class SDC30isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
-        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         sdc30 = SDC30(i2c);
         return InitTaskResult(i2c.toJson(), getData());
