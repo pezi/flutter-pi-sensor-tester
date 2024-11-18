@@ -14,7 +14,7 @@ led demo.
 
 [Video snippet for reordering UI elements](https://github.com/pezi/dart_periphery_img/raw/main/reoder.mp4)
 
-## Integrated devices
+## Supported devices
 
 * [SGP30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sgp30.dart): tVOC and eCO2 Gas Sensor
 * [BME280](https://github.com/pezi/dart_periphery/blob/main/example/i2c_bme280.dart): Temperature, humidity and pressure sensor.
