@@ -1,14 +1,14 @@
 const Map<String,String> flutterInternals = 
 {
-  'frameworkVersion': '3.24.4',
+  'frameworkVersion': '3.24.5',
   'channel': 'stable',
   'repositoryUrl': 'https://github.com/flutter/flutter.git',
-  'frameworkRevision': '603104015dd692ea3403755b55d07813d5cf8965',
-  'frameworkCommitDate': '2024-10-24 08:01:25 -0700',
-  'engineRevision': 'db49896cf25ceabc44096d5f088d86414e05a7aa',
+  'frameworkRevision': 'dec2ee5c1f98f8e84a7d5380c05eb8a3d0a81668',
+  'frameworkCommitDate': '2024-11-13 11:13:06 -0800',
+  'engineRevision': 'a18df97ca57a249df5d8d68cd0820600223ce262',
   'dartSdkVersion': '3.5.4',
   'devToolsVersion': '2.37.3',
-  'flutterVersion': '3.24.4',
+  'flutterVersion': '3.24.5',
   'flutterRoot': '/Users/pezi/software/flutter/flutter_current'
 }
 ;

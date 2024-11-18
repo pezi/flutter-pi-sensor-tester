@@ -12,14 +12,14 @@ import 'package:flutter/foundation.dart';
 import '../constants.dart';
 import 'isolate_helper.dart';
 
-/// Isolate to handle a SHT31 sensor: temperature and humidity
-class SHT31isolate extends IsolateWrapper {
+/// Isolate to handle a MCP9808 sensor: temperature and humidity
+class MCP9808isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
-  late SHT31 sht31;
+  late MCP9808 mcp9808;
 
-  SHT31isolate(super.isolateId, bool super.simulation);
-  SHT31isolate.empty() : super("", "");
+  MCP9808isolate(super.isolateId, bool super.simulation);
+  MCP9808isolate.empty() : super("", "");
 
   @override
   void processData(SendPort sendPort, Object data) {
@@ -49,13 +49,12 @@ class SHT31isolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var result = sht31.getValues();
+    var result = mcp9808.getValue();
 
     var values = <String, dynamic>{};
 
     values['c'] = counter;
     values['t'] = result.temperature;
-    values['h'] = result.humidity;
 
     return values;
   }
@@ -65,7 +64,6 @@ class SHT31isolate extends IsolateWrapper {
     var values = <String, dynamic>{};
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
-    values['h'] = 30 + Random().nextDouble();
 
     return values;
   }
@@ -79,7 +77,7 @@ class SHT31isolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       try {
         i2c = I2C(gI2C);
-        sht31 = SHT31(i2c);
+        mcp9808 = MCP9808(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
         if (kDebugMode) {

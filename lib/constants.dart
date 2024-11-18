@@ -21,8 +21,13 @@ enum DashboardType {
   bme280('sensor_v3.png', 'Temperature, Humidity, Pressure'),
   sht31('thermometer_v4.png', 'Temperature'),
   sgp30('iaq_v1.png', 'Air quality sensor'),
-  cozir('co2_v2.png', 'Serial CO₂ sensor'),
-  leds('rgb.png', 'GPIO based actuator demo');
+  cozir('co2_v2.png', 'Serial CO₂,Temperature, Humidity sensor'),
+  leds('rgb.png', 'GPIO based actuator demo'),
+  gesture('gesture_v2.png', 'Grove gesture sensor'),
+  mcp9808('thermometer_v5.png', 'Temperature'),
+  mlx90615('thermometer_v7.png', 'Temperature'),
+  sdc30('co2_v2.png', 'CO₂, Temperature, Humidity'),
+  ;
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',
@@ -60,7 +65,7 @@ enum MonoFonts {
 String gMonoFontName = MonoFonts.jetBrainsMono.name;
 
 // https://cssgradient.io/shades-of-blue/
-// collection of shadesof blue
+// collection of shades of blue
 const blueGrey = Color(0xFF6699CC);
 const blueYonder = Color(0xFF5072A7);
 const bayernBlue = Color(0xFF0066b2);

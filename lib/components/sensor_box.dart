@@ -89,9 +89,15 @@ class SensorBox extends StatelessWidget {
         style: gSensorBoxTextStyle,
       ));
     } else {
+      TextStyle style;
+      if (image == SensorImage.gesture) {
+        style = gSensorBoxTextStyle.copyWith(fontSize: 25);
+      } else {
+        style = gSensorBoxTextStyle;
+      }
       line.add(Text(
         formattedValue,
-        style: gSensorBoxTextStyle,
+        style: style,
       ));
     }
 
@@ -181,6 +187,15 @@ class SensorBox extends StatelessWidget {
       child: buildContent(),
     );
   }
+}
+
+class GestureDetector extends SensorBox {
+  GestureDetector(
+      {super.key, required super.imageVersion, required Gesture gesture})
+      : super(
+            image: SensorImage.gesture,
+            formattedValue: gesture.name,
+            rawValue: gesture.index);
 }
 
 class Thermometer extends SensorBox {

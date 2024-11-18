@@ -15,7 +15,7 @@ import 'isolate_helper.dart';
 // measurement pause in sec
 const int measurementPause = 2;
 
-/// Isolate to handle a BME680 sensor: temperature, humidity pressure and
+/// Isolate to handle a BME680 sensor: temperature, humidity, pressure and
 /// air quality
 class BME680isolate extends IsolateWrapper {
   int counter = 1;
@@ -87,7 +87,6 @@ class BME680isolate extends IsolateWrapper {
 
     if (!(initialData as bool)) {
       try {
-        reuseTmpFileLibrary(true);
         i2c = I2C(gI2C);
         bme680 = BME680(i2c);
         return InitTaskResult(i2c.toJson(), getData());

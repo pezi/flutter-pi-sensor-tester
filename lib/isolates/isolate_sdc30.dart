@@ -12,14 +12,18 @@ import 'package:flutter/foundation.dart';
 import '../constants.dart';
 import 'isolate_helper.dart';
 
-/// Isolate to handle a SHT31 sensor: temperature and humidity
-class SHT31isolate extends IsolateWrapper {
+// measurement pause in sec
+const int measurementPause = 4;
+
+/// Isolate to handle a SCD30 sensor: CO2, temperature and humidity
+/// air quality
+class SDC30isolate extends IsolateWrapper {
   int counter = 1;
   late I2C i2c;
-  late SHT31 sht31;
+  late SDC30 sdc30;
 
-  SHT31isolate(super.isolateId, bool super.simulation);
-  SHT31isolate.empty() : super("", "");
+  SDC30isolate(super.isolateId, bool super.simulation);
+  SDC30isolate.empty() : super.empty();
 
   @override
   void processData(SendPort sendPort, Object data) {
@@ -49,13 +53,18 @@ class SHT31isolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var result = sht31.getValues();
-
+    late SDC30result result;
+    try {
+      result = sdc30.getValues();
+    } on Exception catch (e) {
+      result = SDC30result.empty();
+    }
     var values = <String, dynamic>{};
 
     values['c'] = counter;
     values['t'] = result.temperature;
     values['h'] = result.humidity;
+    values['co2'] = result.co2;
 
     return values;
   }
@@ -66,6 +75,7 @@ class SHT31isolate extends IsolateWrapper {
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();
+    values['co2'] = 1100.0 + Random().nextInt(10);
 
     return values;
   }
@@ -79,7 +89,7 @@ class SHT31isolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       try {
         i2c = I2C(gI2C);
-        sht31 = SHT31(i2c);
+        sdc30 = SDC30(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
         if (kDebugMode) {
@@ -97,6 +107,8 @@ class SHT31isolate extends IsolateWrapper {
     }
 
     return InitTaskResult("{}", getSimulatedData());
+    // Test error
+    // return InitTaskResult.error("test");
   }
 
   @override
@@ -111,7 +123,7 @@ class SHT31isolate extends IsolateWrapper {
       }
 
       if (counter != 0) {
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: measurementPause));
       }
       ++counter;
       return MainTaskResult(false, m);
