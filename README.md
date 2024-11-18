@@ -3,7 +3,7 @@
 This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the 
 Raspberry Pi.
 
-UI-Overview 
+## User interface 
 
 ![alt text](https://raw.githubusercontent.com/pezi/dart_periphery_img/main/flutter_sensor_tester.gif "Flutter Sensor Tester")
 
@@ -14,7 +14,20 @@ led demo.
 
 [Video snippet for reordering UI elements](https://github.com/pezi/dart_periphery_img/raw/main/reoder.mp4)
 
-## Overview
+## Integrated devices
+
+* [SGP30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sgp30.dart): tVOC and eCO2 Gas Sensor
+* [BME280](https://github.com/pezi/dart_periphery/blob/main/example/i2c_bme280.dart): Temperature, humidity and pressure sensor.
+* [BME680](https://github.com/pezi/dart_periphery/blob/main/example/i2c_bme680.dart): Temperature, humidity pressure and gas (Indoor Airy Quality) sensor.
+* [SHT31](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sht31.dart): Temperature and humidity sensor. 
+* [CozIR](https://github.com/pezi/dart_periphery/blob/main/example/serial_cozir.dart): CO₂, temperature and humidity sensor.
+* [Grove Gesture](https://github.com/pezi/dart_periphery/blob/main/example/i2c_gesture_sensor.dart): can recognize 9 basic gestures.
+* [MCP9808](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mcp9808.dart): high accuracy temperature sensor.
+* [MLX90615](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mlx90615.dart): digital infrared non-contact temperature sensor.
+* [SDC30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sdc30.dart): CO₂, temperature and humidity sensor.
+* [Grove Base Hat](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/)
+
+## Technical Overview
 
 This subproject of [dart_periphery](https://pub.dev/packages/dart_periphery) based 
 on [flutter-pi](https://github.com/ardera/flutter-pi) implements an isolate/stream architecture 
