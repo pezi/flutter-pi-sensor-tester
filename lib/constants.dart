@@ -27,7 +27,7 @@ enum DashboardType {
   mcp9808('thermometer_v5.png', 'Temperature'),
   mlx90615('thermometer_v7.png', 'Temperature'),
   sdc30('co2_v2.png', 'CO₂, Temperature, Humidity'),
-  ;
+  si1145('light_v1.png', 'Visible & IR light, UV index');
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',
@@ -136,6 +136,7 @@ var gUnitSpace = const SizedBox(
 );
 
 var gTemperatureFormat = NumberFormat('###.0');
+var gUVindexFormat = NumberFormat('##.0');
 var gPressureFormat = NumberFormat('###.0');
 var gHumidityFormat = NumberFormat('##.0');
 var gDecimalPoint = '.';

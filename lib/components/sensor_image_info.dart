@@ -22,7 +22,11 @@ enum SensorImage {
   customPaint(0, SensorDataType.num),
   h2(2, SensorDataType.int),
   ethanol(1, SensorDataType.int),
-  gesture(1, SensorDataType.int);
+  gesture(1, SensorDataType.int),
+  uv(2),
+  light(2, SensorDataType.int),
+  infrared(1, SensorDataType.int),
+  ;
 
   const SensorImage(this.number, [this.dataType = SensorDataType.double]);
 
