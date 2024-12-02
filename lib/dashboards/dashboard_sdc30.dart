@@ -35,7 +35,7 @@ class DashboardSDC30 extends Dashboard {
       key: const ValueKey("3"),
       sensor: "Sensor: SDC30",
       interface: "I2C Bus: ${gI2C.toString()}",
-      icon: 'sensor_v3.png',
+      icon: 'co2_v2.png',
       counter: counter,
     );
     widgetMap[4] = const Clock(key: ValueKey("4"));
