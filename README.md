@@ -14,7 +14,7 @@ led demo.
 
 [Video snippet for reordering UI elements](https://github.com/pezi/dart_periphery_img/raw/main/reoder.mp4)
 
-## Integrated devices
+## Supported  devices
 
 * [SGP30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sgp30.dart): tVOC and eCO2 Gas Sensor
 * [BME280](https://github.com/pezi/dart_periphery/blob/main/example/i2c_bme280.dart): Temperature, humidity and pressure sensor.
@@ -25,6 +25,7 @@ led demo.
 * [MCP9808](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mcp9808.dart): high accuracy temperature sensor.
 * [MLX90615](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mlx90615.dart): digital infrared non-contact temperature sensor.
 * [SDC30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sdc30.dart): CO₂, temperature and humidity sensor.
+* [SI1145](https://github.com/pezi/dart_periphery/blob/main/example/i2c_si1145.dart): Visible & IR light and UV index sensor
 * [Grove Base Hat](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/)
 
 ## Technical Overview
