@@ -11,31 +11,31 @@ import '../components/sensor_image_box.dart';
 import '../constants.dart';
 import 'dashboard_abstract.dart';
 
-class DashboardSDC30 extends Dashboard {
-  const DashboardSDC30({super.key, required super.isolateWrapper});
+class DashboardSI1145 extends Dashboard {
+  const DashboardSI1145({super.key, required super.isolateWrapper});
 
   @override
   Map<int, Widget> buildUI(TaskResult result) {
     var values = result.data!;
-    var temperature = values['t']! as double;
-    var co2 = values['co2']! as double;
-    var humidity = values['h']! as double;
+    var visible = values['visible']! as int;
+    var infrared = values['ir']! as int;
+    var uvIndex = values['uvIndex']! as double;
 
     var counter = values['c'] as int;
 
     var widgetMap = <int, Widget>{};
 
-    widgetMap[0] = Thermometer(
-        key: const ValueKey("0"), imageVersion: 5, temperature: temperature);
-    widgetMap[1] = Hygrometer(
-        key: const ValueKey("1"), imageVersion: 5, humidity: humidity);
+    widgetMap[0] = VisibleLight(
+        key: const ValueKey("0"), imageVersion: 2, visible: visible);
+    widgetMap[1] =
+        Infrared(key: const ValueKey("1"), imageVersion: 1, infrared: infrared);
     widgetMap[2] =
-        CO2(key: const ValueKey("2"), imageVersion: 2, co2: co2.toInt());
+        UVindex(key: const ValueKey("2"), imageVersion: 1, uvIndex: uvIndex);
     widgetMap[3] = SensorImageBox(
       key: const ValueKey("3"),
-      sensor: "Sensor: SDC30",
+      sensor: "Sensor: SI1145",
       interface: "I2C Bus: ${gI2C.toString()}",
-      icon: 'co2_v2.png',
+      icon: 'light_v1.png',
       counter: counter,
     );
     widgetMap[4] = const Clock(key: ValueKey("4"));

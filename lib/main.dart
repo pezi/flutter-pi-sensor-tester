@@ -28,6 +28,7 @@ import 'dashboards/dashboard_mlx90615.dart';
 import 'dashboards/dashboard_sdc30.dart';
 import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
+import 'dashboards/dashboard_si1145.dart';
 import 'isolates/isolate_bme280.dart';
 import 'isolates/isolate_bme680.dart';
 import 'isolates/isolate_demo.dart';
@@ -38,6 +39,7 @@ import 'isolates/isolate_mlx90615.dart';
 import 'isolates/isolate_sdc30.dart';
 import 'isolates/isolate_sgp30.dart';
 import 'isolates/isolate_sht31.dart';
+import 'isolates/isolate_si1145.dart';
 
 void main() async {
   // Set the size of the desktop app to a fixed size to enable
@@ -151,6 +153,11 @@ Widget _createDashboard(ParentUpdateCallback callback) {
     case DashboardType.leds:
       return DashboardLeds(
         isolateWrapper: LedsIsolate(DashboardType.leds.name, gSimulateSensor),
+      );
+    case DashboardType.si1145:
+      return DashboardSI1145(
+        isolateWrapper:
+            SI1145isolate(DashboardType.si1145.name, gSimulateSensor),
       );
     case DashboardType.overview:
       return DashboardOverview(callback: callback);

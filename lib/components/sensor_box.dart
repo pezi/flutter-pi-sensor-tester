@@ -207,12 +207,36 @@ class Thermometer extends SensorBox {
             rawValue: temperature);
 }
 
+class VisibleLight extends SensorBox {
+  VisibleLight({super.key, required super.imageVersion, required int visible})
+      : super(
+            image: SensorImage.light,
+            formattedValue: visible.toString(),
+            rawValue: visible);
+}
+
+class Infrared extends SensorBox {
+  Infrared({super.key, required super.imageVersion, required int infrared})
+      : super(
+            image: SensorImage.infrared,
+            formattedValue: infrared.toString(),
+            rawValue: infrared);
+}
+
 class Barometer extends SensorBox {
   Barometer({super.key, required super.imageVersion, required double pressure})
       : super(
             image: SensorImage.barometer,
             formattedValue: gPressureFormat.format(pressure),
             rawValue: pressure);
+}
+
+class UVindex extends SensorBox {
+  UVindex({super.key, required super.imageVersion, required double uvIndex})
+      : super(
+            image: SensorImage.uv,
+            formattedValue: gUVindexFormat.format(uvIndex),
+            rawValue: uvIndex);
 }
 
 class Hygrometer extends SensorBox {
