@@ -1,5 +1,8 @@
 # flutter_pi_sensor_tester
 
+
+[![MIT License](https://img.shields.io/github/license/pezi/flutter_pi_sensor_tester)](https://opensource.org/licenses/mit-license.php)
+
 This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the 
 Raspberry Pi.
 

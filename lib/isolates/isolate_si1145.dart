@@ -45,9 +45,9 @@ class SI1145isolate extends IsolateWrapper {
   Map<String, dynamic> getSimulatedData() {
     var values = <String, dynamic>{};
     values['c'] = counter;
-    values['visible'] = 18 + Random().nextInt(3);
-    values['ir'] = 30 + Random().nextInt(3);
-    values['uvIndex'] = 1100.0 + Random().nextInt(10);
+    values['visible'] = 260 + Random().nextInt(3);
+    values['ir'] = 250 + Random().nextInt(3);
+    values['uvIndex'] = 0.1 + Random().nextDouble();
 
     return values;
   }

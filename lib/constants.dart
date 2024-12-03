@@ -136,7 +136,7 @@ var gUnitSpace = const SizedBox(
 );
 
 var gTemperatureFormat = NumberFormat('###.0');
-var gUVindexFormat = NumberFormat('##.0');
+var gUVindexFormat = NumberFormat('0.0');
 var gPressureFormat = NumberFormat('###.0');
 var gHumidityFormat = NumberFormat('##.0');
 var gDecimalPoint = '.';
