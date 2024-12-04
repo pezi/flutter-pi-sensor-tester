@@ -105,7 +105,9 @@ cd flutter_pi_sensor_tester
 # - enable SSH key login
 # - set correct CPU arch (default: 32-bit ARM) - see flutterpi_tool help build
 #
-flutterpi_tool build --release && rsync -a ./build/flutter_assets/ user@raspberry:/home/user/flutter_pi_sensor_tester && ssh user@raspberry "flutter-pi --release /home/pezi/flutter_pi_sensor_tester"
+flutterpi_tool build --release
+rsync -a ./build/flutter_assets/ user@raspberry:/home/user/flutter_pi_sensor_tester
+ssh user@raspberry "flutter-pi --release /home/pezi/flutter_pi_sensor_tester"
 ```
 
 ## 📄 Coding
