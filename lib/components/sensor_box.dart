@@ -112,6 +112,12 @@ class SensorBox extends StatelessWidget {
         'ppm',
         style: gSensorBoxUnitTextStyle,
       ));
+    } else if (image == SensorImage.light || image == SensorImage.infrared) {
+      line.add(gUnitSpace);
+      line.add(Text(
+        'nm',
+        style: gSensorBoxUnitTextStyle,
+      ));
     } else if (image == SensorImage.hygrometer) {
       line.add(gUnitSpace);
       line.add(Text(
