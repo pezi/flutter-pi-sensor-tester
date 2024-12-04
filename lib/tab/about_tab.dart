@@ -46,8 +46,8 @@ class AboutTab extends StatelessWidget {
       ),
       InfoCard.url(
         widget: Image.asset(width: 30, '${assetSensorImages}github_icon.png'),
-        text: 'https://gitlab.at',
-        url: 'https://gitlab.at',
+        text: 'https://github.com/pezi',
+        url: 'https://github.com/pezi',
       ),
       if (gUsedImages.isNotEmpty)
         const TitleBox(text: 'Icon artist attribution including link'),
