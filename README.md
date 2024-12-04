@@ -1,12 +1,15 @@
 # flutter_pi_sensor_tester
 
-[![flutter platform](https://img.shields.io/badge/Platform-Flutter-yellow.svg)](https://flutter.io)
+[![flutter platform](https://img.shields.io/badge/Platform-Flutter-blue.svg)](https://flutter.io)
 [![MIT License](https://img.shields.io/github/license/pezi/flutter_pi_sensor_tester)](https://opensource.org/licenses/mit-license.php)
 
-This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the 
-Raspberry Pi.
+This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the Raspberry Pi.
 
-## User interface 
+## 📣 Import hint
+
+Refer to the [CHANGELOG](https://github.com/pezi/flutter_pi_sensor_tester/blob/main/CHANGELOG.md) for changes.
+ 
+## 🖥️ User interface 
 
 ![alt text](https://raw.githubusercontent.com/pezi/dart_periphery_img/main/flutter_sensor_tester.gif "Flutter Sensor Tester")
 
@@ -17,7 +20,7 @@ led demo.
 
 [Video snippet for reordering UI elements](https://github.com/pezi/dart_periphery_img/raw/main/reoder.mp4)
 
-## Supported  devices
+## 🌡️ Supported devices
 
 * [SGP30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sgp30.dart): tVOC and eCO2 Gas Sensor
 * [BME280](https://github.com/pezi/dart_periphery/blob/main/example/i2c_bme280.dart): Temperature, humidity and pressure sensor.
@@ -31,7 +34,7 @@ led demo.
 * [SI1145](https://github.com/pezi/dart_periphery/blob/main/example/i2c_si1145.dart): Visible & IR light and UV index sensor
 * [Grove Base Hat](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/)
 
-## Technical Overview
+## ℹ️ Technical Overview
 
 This subproject of [dart_periphery](https://pub.dev/packages/dart_periphery) based 
 on [flutter-pi](https://github.com/ardera/flutter-pi) implements an isolate/stream architecture 
@@ -87,14 +90,32 @@ As an alternative solution, you can use
 `void loadLibFromFlutterAssetDir(bool load)`  to address this issue.
 For more details, refer to the documentation [here](https://github.com/pezi/dart_periphery?tab=readme-ov-file#flutter-pi).  
 
-**Starting**
+
+## 🏗️ Installation
+
+**Prerequisite**:  Install and setup [flutter-pi](https://github.com/ardera/flutter-pi)
+
+```
+git clone https://github.com/pezi/flutter_pi_sensor_tester.git
+cd flutter_pi_sensor_tester
+
+# Build, depoly and start the application
+# 
+# Hints:
+# - enable SSH key login
+# - set correct CPU arch (default: 32-bit ARM) - see flutterpi_tool help build
+#
+flutterpi_tool build --release && rsync -a ./build/flutter_assets/ user@raspberry:/home/user/flutter_pi_sensor_tester && ssh user@raspberry "flutter-pi --release /home/pezi/flutter_pi_sensor_tester"
+```
+
+## 📄 Coding
 The isolate related code can be found here:
 
 * [isolate_helper.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_helper.dart)
 * [isolate_factory.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_factory.dart)
 
 
-**Next steps:**
+## 🎯 Next steps
 * Improve documentation
 * Extend this demo to use a Flutter state management library like [riverpod](https://pub.dev/packages/riverpod)
 * **TBD**: Extend the isolate API for code generation support to reduce manual coding. 
