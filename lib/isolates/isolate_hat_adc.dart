@@ -14,13 +14,13 @@ import 'isolate_helper.dart';
 
 const gAnalogPin = 0;
 
-/// Isolate to handle an analog pin - DAC
-class AnalogPinIsolate extends IsolateWrapper {
+/// Isolate to handle an analog pin/DAC of a extension hat.
+class HatADCisolate extends IsolateWrapper {
   int counter = 1;
   late GroveBaseHat hat;
 
-  AnalogPinIsolate(super.isolateId, bool super.simulation);
-  AnalogPinIsolate.empty() : super("", "");
+  HatADCisolate(super.isolateId, bool super.simulation);
+  HatADCisolate.empty() : super("", "");
 
   @override
   void processData(SendPort sendPort, Object data) {

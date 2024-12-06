@@ -10,9 +10,11 @@ import 'package:isolate/components/error_box.dart';
 import 'package:isolate/dashboards/dashboard_bme680.dart';
 import 'package:isolate/dashboards/dashboard_cozir.dart';
 import 'package:isolate/dashboards/dashboard_gesture.dart';
+import 'package:isolate/dashboards/dashboard_hat_adc.dart';
 import 'package:isolate/dashboards/dashboard_leds.dart';
 import 'package:isolate/dashboards/dashboard_overview.dart';
 import 'package:isolate/isolates/isolate_cozir.dart';
+import 'package:isolate/isolates/isolate_hat_adc.dart';
 import 'package:isolate/isolates/isolate_leds.dart';
 import 'package:isolate/tab/about_tab.dart';
 import 'package:isolate/tab/configuration_tab.dart';
@@ -161,6 +163,10 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       );
     case DashboardType.overview:
       return DashboardOverview(callback: callback);
+    case DashboardType.adc:
+      return DashboardHatADC(
+          isolateWrapper:
+              HatADCisolate(DashboardType.adc.name, gSimulateSensor));
   }
 }
 
