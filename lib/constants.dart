@@ -10,6 +10,8 @@ import 'package:intl/intl.dart';
 /// Raspberry Pi I2C bus number
 const gI2C = 1;
 
+const appVersion = "1.0.3";
+
 //
 bool gSimulateSensor = true;
 
@@ -81,6 +83,8 @@ const gBoxBackgroundColor = airSuperiorityBlue;
 const gBoxBorderColor = Colors.black54;
 const gInfoBoxBackground = lightSteelBlue;
 const gTextColor = Colors.black; //Color(0xFF444446);
+
+const gInfoIconColor = Color(0xff03589D);
 
 // global text styles
 var gSensorBoxTextStyle = TextStyle(
