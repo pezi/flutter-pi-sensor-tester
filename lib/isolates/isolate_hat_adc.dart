@@ -14,7 +14,7 @@ import 'isolate_helper.dart';
 
 const gAnalogPin = 0;
 
-/// Isolate to handle an analog pin/DAC of a extension hat.
+/// Isolate to handle an analog pin/DAC of am extension hat.
 class HatADCisolate extends IsolateWrapper {
   int counter = 1;
   late GroveBaseHat hat;
