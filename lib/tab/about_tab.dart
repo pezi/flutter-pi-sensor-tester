@@ -22,24 +22,24 @@ class AboutTab extends StatelessWidget {
           widget: const FlutterLogo(),
           text: 'Flutter Version: ${flutterInternals['frameworkVersion']!}'),
       InfoCard(
-          widget: Image.asset(
-            '${assetSensorImages}dart.png',
-            width: 25,
-            height: 25,
+          widget: Icon(
+            Icons.info_outline,
+            color: gInfoIconColor,
+            size: 25.0,
           ),
-          text: 'Dart Version: ${flutterInternals['dartSdkVersion']!}'),
+          text: 'App Version: $appVersion'),
       const TitleBox(text: 'Contact'),
       const InfoCard.mail(
         widget: Icon(
           Icons.email_outlined,
-          color: Color(0xff03589D),
+          color: gInfoIconColor,
         ),
         email: 'peter.sauer@flutterdev.at',
       ),
       const InfoCard.url(
         widget: Icon(
           Icons.link,
-          color: Color(0xff03589D),
+          color: gInfoIconColor,
         ),
         text: 'https://flutterdev.at',
         url: 'https://flutterdev.at',

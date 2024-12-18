@@ -229,6 +229,14 @@ class Infrared extends SensorBox {
             rawValue: infrared);
 }
 
+class ADC extends SensorBox {
+  ADC({super.key, required super.imageVersion, required int value})
+      : super(
+            image: SensorImage.adc,
+            formattedValue: value.toString(),
+            rawValue: value);
+}
+
 class Barometer extends SensorBox {
   Barometer({super.key, required super.imageVersion, required double pressure})
       : super(

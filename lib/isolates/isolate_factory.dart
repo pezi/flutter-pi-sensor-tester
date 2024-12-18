@@ -9,6 +9,7 @@ import 'isolate_bme280.dart';
 import 'isolate_bme680.dart';
 import 'isolate_cozir.dart';
 import 'isolate_demo.dart';
+import 'isolate_hat_adc.dart';
 import 'isolate_helper.dart';
 import 'isolate_leds.dart';
 import 'isolate_mcp9808.dart';
@@ -56,6 +57,9 @@ class IsolateClassFactory {
     SI1145isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             SI1145isolate(isolateId, data as bool),
+    HatADCisolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            HatADCisolate(isolateId, data as bool),
   };
 
   static IsolateWrapper createInstance(

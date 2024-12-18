@@ -1,4 +1,7 @@
 ## 1.0.2
+* Add ADC demo
+
+## 1.0.2
 
 * Add [SI1145]( https://www.seeedstudio.com/Grove-Sunlight-Sensor.html) sunlight sensor: visible, IR and raw UV
 

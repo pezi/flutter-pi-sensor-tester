@@ -1,6 +1,7 @@
 # flutter_pi_sensor_tester
 
-[![flutter platform](https://img.shields.io/badge/Platform-Flutter-blue.svg)](https://flutter.io)
+[![flutter platform](https://img.shields.io/badge/platform-Flutter-blue)](https://flutter.io)
+[![version](https://img.shields.io/badge/changelog-0.1.3-orange)](https://github.com/pezi/flutter_pi_sensor_tester/blob/main/CHANGELOG.md)
 [![MIT License](https://img.shields.io/github/license/pezi/flutter_pi_sensor_tester)](https://opensource.org/licenses/mit-license.php)
 
 This project is built upon [dart_periphery](https://github.com/pezi/dart_periphery) and [flutter-pi](https://github.com/ardera/flutter-pi) for running Flutter on the 
@@ -35,6 +36,7 @@ led demo.
 * [MLX90615](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mlx90615.dart): digital infrared non-contact temperature sensor.
 * [SDC30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sdc30.dart): CO₂, temperature and humidity sensor.
 * [SI1145](https://github.com/pezi/dart_periphery/blob/main/example/i2c_si1145.dart): Visible & IR light and UV index sensor
+* [Analog Digital Converter](https://github.com/pezi/dart_periphery/blob/main/example/hat_light_sensor.dart) - e.g. [Light sensor](https://wiki.seeedstudio.com/Grove-Light_Sensor/)
 * [Grove Base Hat](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/)
 
 ## ℹ️ Technical Overview
@@ -113,12 +115,11 @@ rsync -a ./build/flutter_assets/ user@raspberry:/home/user/flutter_pi_sensor_tes
 ssh user@raspberry "flutter-pi --release /home/pezi/flutter_pi_sensor_tester"
 ```
 
-## 📄 Coding
+## 📄 Programming
 The isolate related code can be found here:
 
 * [isolate_helper.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_helper.dart)
 * [isolate_factory.dart](https://github.com/pezi/flutter-pi-sensor-tester/blob/main/lib/isolates/isolate_factory.dart)
-
 
 ## 🎯 Next steps
 * Improve documentation
