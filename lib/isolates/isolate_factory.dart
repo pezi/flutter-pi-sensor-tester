@@ -18,6 +18,7 @@ import 'isolate_sdc30.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 import 'isolate_si1145.dart';
+import 'isolate_tsl2591.dart';
 
 /// Constructs a class by name.
 class IsolateClassFactory {
@@ -60,6 +61,9 @@ class IsolateClassFactory {
     HatADCisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             HatADCisolate(isolateId, data as bool),
+    TSL2591isolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            TSL2591isolate(isolateId, data as bool),
   };
 
   static IsolateWrapper createInstance(

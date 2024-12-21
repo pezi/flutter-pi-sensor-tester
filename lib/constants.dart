@@ -30,7 +30,8 @@ enum DashboardType {
   mlx90615('thermometer_v7.png', 'Temperature'),
   sdc30('co2_v2.png', 'CO₂, Temperature, Humidity'),
   si1145('light_v1.png', 'Visible & IR light, UV index'),
-  adc('converter_v1.png', "ADC - Analog to Digital");
+  adc('converter_v1.png', "ADC - Analog to Digital"),
+  tsl2591('spectrum_v2.png', 'Lux, Visible, IR, Full spectrum light');
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',

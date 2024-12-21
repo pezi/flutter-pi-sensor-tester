@@ -31,6 +31,7 @@ import 'dashboards/dashboard_sdc30.dart';
 import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
 import 'dashboards/dashboard_si1145.dart';
+import 'dashboards/dashboard_tsl2591.dart';
 import 'isolates/isolate_bme280.dart';
 import 'isolates/isolate_bme680.dart';
 import 'isolates/isolate_demo.dart';
@@ -42,6 +43,7 @@ import 'isolates/isolate_sdc30.dart';
 import 'isolates/isolate_sgp30.dart';
 import 'isolates/isolate_sht31.dart';
 import 'isolates/isolate_si1145.dart';
+import 'isolates/isolate_tsl2591.dart';
 
 void main() async {
   // Sets the size of the desktop app to a fixed size to enable making
@@ -167,6 +169,9 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       return DashboardHatADC(
           isolateWrapper:
               HatADCisolate(DashboardType.adc.name, gSimulateSensor));
+    case DashboardType.tsl2591:
+      return DashboardTSL2591(
+          isolateWrapper: TSL2591isolate(gDashboard.name, gSimulateSensor));
   }
 }
 

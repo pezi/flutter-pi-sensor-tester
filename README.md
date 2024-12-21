@@ -36,6 +36,7 @@ led demo.
 * [MLX90615](https://github.com/pezi/dart_periphery/blob/main/example/i2c_mlx90615.dart): digital infrared non-contact temperature sensor.
 * [SDC30](https://github.com/pezi/dart_periphery/blob/main/example/i2c_sdc30.dart): CO₂, temperature and humidity sensor.
 * [SI1145](https://github.com/pezi/dart_periphery/blob/main/example/i2c_si1145.dart): Visible & IR light and UV index sensor
+* [TSL2591](https://github.com/pezi/dart_periphery/blob/main/example/i2c_tsl2591.dart): Visible, IR light, full spectrum and lux sensor
 * [Analog Digital Converter](https://github.com/pezi/dart_periphery/blob/main/example/hat_light_sensor.dart) - e.g. [Light sensor](https://wiki.seeedstudio.com/Grove-Light_Sensor/)
 * [Grove Base Hat](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/)
 

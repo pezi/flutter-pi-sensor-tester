@@ -229,6 +229,22 @@ class Infrared extends SensorBox {
             rawValue: infrared);
 }
 
+class Spectrum extends SensorBox {
+  Spectrum({super.key, required super.imageVersion, required int spectrum})
+      : super(
+            image: SensorImage.spectrum,
+            formattedValue: spectrum.toString(),
+            rawValue: spectrum);
+}
+
+class Lux extends SensorBox {
+  Lux({super.key, required super.imageVersion, required int lux})
+      : super(
+            image: SensorImage.lux,
+            formattedValue: lux.toString(),
+            rawValue: lux);
+}
+
 class ADC extends SensorBox {
   ADC({super.key, required super.imageVersion, required int value})
       : super(
