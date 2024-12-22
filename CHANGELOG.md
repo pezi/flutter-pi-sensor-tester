@@ -1,5 +1,6 @@
-## 1.0.2
+## 1.0.3
 * Add ADC demo
+* Add TSL2591 sensor
 
 ## 1.0.2
 
