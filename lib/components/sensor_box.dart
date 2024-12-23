@@ -20,6 +20,7 @@ class SensorBox extends StatelessWidget {
   final String unit;
   final Color customBackgroundColor;
   final Color customBorderColor;
+  final bool showUnit;
 
   const SensorBox(
       {super.key,
@@ -29,6 +30,7 @@ class SensorBox extends StatelessWidget {
       required this.formattedValue,
       required this.rawValue,
       this.unit = '',
+      this.showUnit = true,
       this.customBackgroundColor = Colors.green,
       this.customBorderColor = Colors.black});
 
@@ -112,6 +114,13 @@ class SensorBox extends StatelessWidget {
         'ppm',
         style: gSensorBoxUnitTextStyle,
       ));
+    } else if ((image == SensorImage.light || image == SensorImage.infrared) &&
+        showUnit) {
+      line.add(gUnitSpace);
+      line.add(Text(
+        'nm',
+        style: gSensorBoxUnitTextStyle,
+      ));
     } else if (image == SensorImage.hygrometer) {
       line.add(gUnitSpace);
       line.add(Text(
@@ -122,6 +131,12 @@ class SensorBox extends StatelessWidget {
       line.add(gUnitSpace);
       line.add(Text(
         'hPa',
+        style: gSensorBoxUnitTextStyle,
+      ));
+    } else if (image == SensorImage.lux) {
+      line.add(gUnitSpace);
+      line.add(Text(
+        'Lux',
         style: gSensorBoxUnitTextStyle,
       ));
     } else if (image == SensorImage.iaq) {
@@ -208,7 +223,11 @@ class Thermometer extends SensorBox {
 }
 
 class VisibleLight extends SensorBox {
-  VisibleLight({super.key, required super.imageVersion, required int visible})
+  VisibleLight(
+      {super.key,
+      required super.imageVersion,
+      required int visible,
+      super.showUnit = true})
       : super(
             image: SensorImage.light,
             formattedValue: visible.toString(),
@@ -216,11 +235,39 @@ class VisibleLight extends SensorBox {
 }
 
 class Infrared extends SensorBox {
-  Infrared({super.key, required super.imageVersion, required int infrared})
+  Infrared(
+      {super.key,
+      required super.imageVersion,
+      required int infrared,
+      super.showUnit = true})
       : super(
             image: SensorImage.infrared,
             formattedValue: infrared.toString(),
             rawValue: infrared);
+}
+
+class Spectrum extends SensorBox {
+  Spectrum({super.key, required super.imageVersion, required int spectrum})
+      : super(
+            image: SensorImage.spectrum,
+            formattedValue: spectrum.toString(),
+            rawValue: spectrum);
+}
+
+class Lux extends SensorBox {
+  Lux({super.key, required super.imageVersion, required int lux})
+      : super(
+            image: SensorImage.lux,
+            formattedValue: lux.toString(),
+            rawValue: lux);
+}
+
+class ADC extends SensorBox {
+  ADC({super.key, required super.imageVersion, required int value})
+      : super(
+            image: SensorImage.adc,
+            formattedValue: value.toString(),
+            rawValue: value);
 }
 
 class Barometer extends SensorBox {

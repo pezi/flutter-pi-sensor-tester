@@ -26,6 +26,9 @@ enum SensorImage {
   uv(2),
   light(2, SensorDataType.int),
   infrared(1, SensorDataType.int),
+  adc(1, SensorDataType.int),
+  spectrum(2, SensorDataType.int),
+  lux(1, SensorDataType.int),
   ;
 
   const SensorImage(this.number, [this.dataType = SensorDataType.double]);

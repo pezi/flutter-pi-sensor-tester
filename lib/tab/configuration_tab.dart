@@ -130,6 +130,7 @@ class _ConfigurationTabState extends State<ConfigurationTab> {
           ),
           child: const Text('Quit running demo'),
         ),
+      const TitleBox(text: 'Program settings'),
     ];
 
     return SafeArea(

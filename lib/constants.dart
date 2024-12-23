@@ -10,6 +10,8 @@ import 'package:intl/intl.dart';
 /// Raspberry Pi I2C bus number
 const gI2C = 1;
 
+const appVersion = "1.0.3";
+
 //
 bool gSimulateSensor = true;
 
@@ -27,7 +29,9 @@ enum DashboardType {
   mcp9808('thermometer_v5.png', 'Temperature'),
   mlx90615('thermometer_v7.png', 'Temperature'),
   sdc30('co2_v2.png', 'CO₂, Temperature, Humidity'),
-  si1145('light_v1.png', 'Visible & IR light, UV index');
+  si1145('light_v1.png', 'Visible & IR light, UV index'),
+  adc('converter_v1.png', "ADC - Analog to Digital"),
+  tsl2591('spectrum_v2.png', 'Lux, Visible, IR, Full spectrum light');
 
   const DashboardType.dummy()
       : image = 'dummy.png' '',
@@ -81,6 +85,8 @@ const gBoxBackgroundColor = airSuperiorityBlue;
 const gBoxBorderColor = Colors.black54;
 const gInfoBoxBackground = lightSteelBlue;
 const gTextColor = Colors.black; //Color(0xFF444446);
+
+const gInfoIconColor = Color(0xff03589D);
 
 // global text styles
 var gSensorBoxTextStyle = TextStyle(
