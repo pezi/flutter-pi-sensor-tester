@@ -1,6 +1,9 @@
+## 1.0.4
+* Start with 1.0.4 
+
 ## 1.0.3
 * Add ADC (Analog Digital Converter) demo
-* Add [TSL2591](https://www.adafruit.com/product/1980) sensor
+* Add [TSL2591](https://www.adafruit.com/product/1980) sensor: Visible, IR light, full spectrum and lux
 
 ## 1.0.2
 * Add [SI1145](https://www.seeedstudio.com/Grove-Sunlight-Sensor.html) sunlight sensor: visible, IR and raw UV
