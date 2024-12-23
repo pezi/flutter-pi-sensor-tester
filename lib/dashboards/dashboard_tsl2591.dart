@@ -26,9 +26,16 @@ class DashboardTSL2591 extends Dashboard {
     var widgetMap = <int, Widget>{};
 
     widgetMap[0] = VisibleLight(
-        key: const ValueKey("0"), imageVersion: 2, visible: visible);
-    widgetMap[1] =
-        Infrared(key: const ValueKey("1"), imageVersion: 1, infrared: infrared);
+      key: const ValueKey("0"),
+      imageVersion: 2,
+      visible: visible,
+      showUnit: false,
+    );
+    widgetMap[1] = Infrared(
+        key: const ValueKey("1"),
+        imageVersion: 1,
+        infrared: infrared,
+        showUnit: false);
 
     widgetMap[2] =
         Spectrum(key: const ValueKey("2"), imageVersion: 1, spectrum: full);

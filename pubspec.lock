@@ -76,9 +76,10 @@ packages:
   dart_periphery:
     dependency: "direct main"
     description:
-      path: "../dart_periphery"
-      relative: true
-    source: path
+      name: dart_periphery
+      sha256: "8b21abb08705fdf561b596f1972af2afec83a38c96bb2b87e7792075b3841310"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.9.13"
   fake_async:
     dependency: transitive
