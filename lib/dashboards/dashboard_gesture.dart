@@ -4,7 +4,7 @@
 
 import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/material.dart';
-import 'package:isolate/isolates/isolate_helper.dart';
+import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 
 import '../components/clock.dart';
 import '../components/sensor_box.dart' as sensor_box;

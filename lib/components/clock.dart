@@ -6,7 +6,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:isolate/components/sensor_image_info.dart';
+import 'package:flutter_pi_sensor_tester/components/sensor_image_info.dart';
 
 import '../constants.dart';
 import 'info_box.dart';

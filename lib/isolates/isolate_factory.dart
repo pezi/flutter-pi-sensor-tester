@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/cupertino.dart';
-import 'package:isolate/isolates/isolate_gesture.dart';
+import 'package:flutter_pi_sensor_tester/isolates/isolate_gesture.dart';
 
 import 'isolate_bme280.dart';
 import 'isolate_bme680.dart';

@@ -3,8 +3,8 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:isolate/components/sensor_box.dart';
-import 'package:isolate/components/sensor_image_info.dart';
+import 'package:flutter_pi_sensor_tester/components/sensor_box.dart';
+import 'package:flutter_pi_sensor_tester/components/sensor_image_info.dart';
 
 class CustomSensorValue extends SensorBox {
   CustomSensorValue(

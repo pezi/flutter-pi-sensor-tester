@@ -4,9 +4,9 @@
 
 import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/material.dart';
-import 'package:isolate/components/sensor_image_info.dart';
-import 'package:isolate/components/sensor_painter.dart';
-import 'package:isolate/constants.dart';
+import 'package:flutter_pi_sensor_tester/components/sensor_image_info.dart';
+import 'package:flutter_pi_sensor_tester/components/sensor_painter.dart';
+import 'package:flutter_pi_sensor_tester/constants.dart';
 
 import 'info_box.dart';
 

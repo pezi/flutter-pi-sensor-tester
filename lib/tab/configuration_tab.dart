@@ -5,7 +5,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:isolate/constants.dart';
+import 'package:flutter_pi_sensor_tester/constants.dart';
 
 import '../components/info_box.dart';
 import '../components/title_box.dart';

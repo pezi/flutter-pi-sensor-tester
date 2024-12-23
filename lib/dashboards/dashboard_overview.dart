@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:isolate/constants.dart';
+import 'package:flutter_pi_sensor_tester/constants.dart';
 
 import '../components/overview_box.dart';
 import '../main.dart';
