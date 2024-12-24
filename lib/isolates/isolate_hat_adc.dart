@@ -27,12 +27,12 @@ class HatADCisolate extends IsolateWrapper {
     String cmd = data as String;
     if (!(initialData as bool)) {
       try {} on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -67,7 +67,7 @@ class HatADCisolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task');
     }
 
@@ -76,13 +76,13 @@ class HatADCisolate extends IsolateWrapper {
         hat = GroveBaseHat();
         return InitTaskResult(hat.toJson(), getData());
       } on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
         return InitTaskResult.error(e.toString());
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -110,13 +110,13 @@ class HatADCisolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } on Exception catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Exception details:\n $e');
         print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     } on Error catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Error details:\n $e');
         print('Stack trace:\n $s');
       }

@@ -163,3 +163,5 @@ const gTextStyle = TextStyle(fontSize: gFontSizeNum, fontFamily: gFont);
 
 const gTextLabelStyle = TextStyle(
     fontSize: gFontSizeNum + 3, fontFamily: gFont, fontWeight: FontWeight.w800);
+
+const sensorDebug = true;

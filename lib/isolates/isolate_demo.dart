@@ -7,6 +7,7 @@ import 'dart:isolate';
 
 import 'package:flutter/foundation.dart';
 
+import '../constants.dart';
 import 'isolate_helper.dart';
 
 class DemoIsolate extends IsolateWrapper {
@@ -35,7 +36,7 @@ class DemoIsolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task: $duration');
     }
 
@@ -60,7 +61,7 @@ class DemoIsolate extends IsolateWrapper {
 
       return MainTaskResult(false, {"counter": counter, "duration": duration});
     } catch (e) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Sensor error: $e');
       }
       return MainTaskResult.error(true, e.toString());

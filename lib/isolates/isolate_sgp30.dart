@@ -50,7 +50,7 @@ class SGP30isolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task');
     }
 
@@ -103,7 +103,7 @@ class SGP30isolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } catch (e) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Sensor error: $e');
       }
       return MainTaskResult.error(true, e.toString());

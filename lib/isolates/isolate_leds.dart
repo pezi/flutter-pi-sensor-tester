@@ -9,6 +9,7 @@ import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/foundation.dart';
 
 import '../components/led_box.dart';
+import '../constants.dart';
 import 'isolate_helper.dart';
 
 Map<LedColor, GPIO> gpioMap = {};
@@ -41,7 +42,7 @@ class LedsIsolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       gpioMap[LedColor.values[array[0] as int]]?.write(array[1] as bool);
     } else {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print("Set led");
       }
     }
@@ -51,7 +52,7 @@ class LedsIsolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task');
     }
 

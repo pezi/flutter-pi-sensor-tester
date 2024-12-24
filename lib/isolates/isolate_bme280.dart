@@ -7,7 +7,7 @@ import 'dart:isolate';
 import 'dart:math';
 
 import 'package:dart_periphery/dart_periphery.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 
 import '../constants.dart';
 import 'isolate_helper.dart';
@@ -57,12 +57,12 @@ class BME280isolate extends IsolateWrapper {
       try {
         i2c.dispose();
       } on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -80,7 +80,7 @@ class BME280isolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task');
     }
 
@@ -91,13 +91,13 @@ class BME280isolate extends IsolateWrapper {
         bme280 = BME280(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
         return InitTaskResult.error(e.toString());
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -126,13 +126,13 @@ class BME280isolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } on Exception catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Exception details:\n $e');
         print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     } on Error catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Error details:\n $e');
         print('Stack trace:\n $s');
       }

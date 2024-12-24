@@ -9,6 +9,7 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/foundation.dart';
 
+import '../constants.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
@@ -50,12 +51,12 @@ class CozIRisolate extends IsolateWrapper {
       try {
         serial.dispose();
       } on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -92,14 +93,14 @@ class CozIRisolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (kDebugMode) {
+    if (sensorDebug) {
       print('Isolate init task');
     }
 
     if (!(initialData as bool)) {
       try {
         serial = Serial('/dev/serial0', Baudrate.b9600);
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Serial interface info: ${serial.getSerialInfo()}');
           // Return firmware version and sensor serial number - two lines
           serial.writeString('Y\r\n');
@@ -113,7 +114,7 @@ class CozIRisolate extends IsolateWrapper {
         serial.writeString('K 2\r\n');
         // print any response
         var event = serial.read(256, 1000);
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Response ${event.toString()}');
         }
         sleep(const Duration(seconds: 2));
@@ -121,13 +122,13 @@ class CozIRisolate extends IsolateWrapper {
         sleep(const Duration(seconds: 5));
         return InitTaskResult(serial.toJson(), map);
       } on Exception catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
         return InitTaskResult.error(e.toString());
       } on Error catch (e, s) {
-        if (kDebugMode) {
+        if (sensorDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -155,13 +156,13 @@ class CozIRisolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } on Exception catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Exception details:\n $e');
         print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     } on Error catch (e, s) {
-      if (kDebugMode) {
+      if (sensorDebug) {
         print('Error details:\n $e');
         print('Stack trace:\n $s');
       }
