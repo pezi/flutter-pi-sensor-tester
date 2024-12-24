@@ -9,7 +9,7 @@ import '../components/clock.dart';
 import '../components/sensor_box.dart';
 import '../components/sensor_image_box.dart';
 import '../components/sensor_painter.dart';
-import '../constants.dart';
+import '../dart_constants.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardSGP30 extends Dashboard {

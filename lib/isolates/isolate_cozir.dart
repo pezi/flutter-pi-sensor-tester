@@ -7,9 +7,8 @@ import 'dart:isolate';
 import 'dart:math';
 
 import 'package:dart_periphery/dart_periphery.dart';
-import 'package:flutter/foundation.dart';
 
-import '../constants.dart';
+import '../dart_constants.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec

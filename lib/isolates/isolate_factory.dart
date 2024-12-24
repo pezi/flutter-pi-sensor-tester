@@ -2,21 +2,21 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_pi_sensor_tester/isolates/isolate_gesture.dart';
+import 'isolate_helper.dart';
+
+import 'isolate_bme680.dart';
 
 import 'isolate_bme280.dart';
-import 'isolate_bme680.dart';
-import 'isolate_cozir.dart';
-import 'isolate_demo.dart';
-import 'isolate_hat_adc.dart';
-import 'isolate_helper.dart';
-import 'isolate_leds.dart';
-import 'isolate_mcp9808.dart';
-import 'isolate_mlx90615.dart';
-import 'isolate_sdc30.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
+import 'isolate_mcp9808.dart';
+import 'isolate_cozir.dart';
+import 'isolate_gesture.dart';
+import 'isolate_mlx90615.dart';
+// import 'isolate_leds.dart';
+import 'isolate_demo.dart';
+import 'isolate_hat_adc.dart';
+import 'isolate_sdc30.dart';
 import 'isolate_si1145.dart';
 import 'isolate_tsl2591.dart';
 
@@ -48,8 +48,8 @@ class IsolateClassFactory {
     CozIRisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             CozIRisolate(isolateId, data as bool),
-    LedsIsolate.empty().runtimeType.toString():
-        (String isolateId, Object data) => LedsIsolate(isolateId, data as bool),
+    /* LedsIsolate.empty().runtimeType.toString():
+        (String isolateId, Object data) => LedsIsolate(isolateId, data as bool), */
     DemoIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) => DemoIsolate(isolateId, data),
     SDC30isolate.empty().runtimeType.toString():

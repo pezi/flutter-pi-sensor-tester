@@ -6,10 +6,9 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:dart_periphery/dart_periphery.dart';
-import 'package:flutter/foundation.dart';
 
 import '../components/led_box.dart';
-import '../constants.dart';
+import '../dart_constants.dart';
 import 'isolate_helper.dart';
 
 Map<LedColor, GPIO> gpioMap = {};

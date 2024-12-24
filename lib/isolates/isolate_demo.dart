@@ -5,9 +5,7 @@
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:flutter/foundation.dart';
-
-import '../constants.dart';
+import '../dart_constants.dart';
 import 'isolate_helper.dart';
 
 class DemoIsolate extends IsolateWrapper {

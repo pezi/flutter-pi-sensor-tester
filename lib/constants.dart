@@ -7,9 +7,6 @@ import 'package:intl/intl.dart';
 
 // Raspberry Pi hardware defaults
 
-/// Raspberry Pi I2C bus number
-const gI2C = 1;
-
 const appVersion = "1.0.3";
 
 //
@@ -163,5 +160,3 @@ const gTextStyle = TextStyle(fontSize: gFontSizeNum, fontFamily: gFont);
 
 const gTextLabelStyle = TextStyle(
     fontSize: gFontSizeNum + 3, fontFamily: gFont, fontWeight: FontWeight.w800);
-
-const sensorDebug = true;

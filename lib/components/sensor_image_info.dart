@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 import '../constants.dart';
+import '../dart_constants.dart';
 
 /// Sensor data types
 enum SensorDataType { int, double, string, num }
