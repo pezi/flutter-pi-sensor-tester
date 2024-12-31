@@ -41,7 +41,7 @@ class LedsIsolate extends IsolateWrapper {
     if (!(initialData as bool)) {
       gpioMap[LedColor.values[array[0] as int]]?.write(array[1] as bool);
     } else {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print("Set led");
       }
     }
@@ -51,7 +51,7 @@ class LedsIsolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print('Isolate init task');
     }
 

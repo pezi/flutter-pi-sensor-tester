@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:isolate';
+import 'dart:convert';
 
 import 'package:async/async.dart';
 
@@ -16,6 +17,38 @@ abstract class TaskResult {
   final bool error;
   final Map<String, dynamic>? data;
   TaskResult(this.error, [this.data]);
+
+  String toJson() {
+    if (data == null || data!.isEmpty) {
+      return '{}';
+    }
+    var map = data as Map<String, dynamic>;
+    var buf = StringBuffer();
+    var index = 0;
+    buf.write('{');
+    for (String key in map.keys) {
+      if (key.startsWith("_")) {
+        // TODO
+        continue;
+      }
+      if (index > 0) {
+        buf.write(',');
+      }
+      buf.write('"$key":');
+      var v = map[key];
+      if (v is int) {
+        buf.write(v);
+      } else if (v is double) {
+        buf.write(v);
+      } else if (v is String) {
+        buf.write('"${jsonEncode(v)}"');
+      }
+      ++index;
+    }
+
+    buf.write('}');
+    return buf.toString();
+  }
 }
 
 /// Result of the init task
@@ -49,7 +82,8 @@ class MainTaskResult extends TaskResult {
 
 /// Result of the exit task method
 class ExitTaskResult extends TaskResult {
-  /// Return value of the exit task, [error] signals an error and the optional user [data].
+  /// Return value of the exit task, [error] signals an error and the optional
+  /// user [data].
   ExitTaskResult(super.error, [super.data]);
 }
 

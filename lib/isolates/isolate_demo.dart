@@ -34,7 +34,7 @@ class DemoIsolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print('Isolate init task: $duration');
     }
 
@@ -59,7 +59,7 @@ class DemoIsolate extends IsolateWrapper {
 
       return MainTaskResult(false, {"counter": counter, "duration": duration});
     } catch (e) {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print('Sensor error: $e');
       }
       return MainTaskResult.error(true, e.toString());

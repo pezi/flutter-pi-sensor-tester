@@ -50,12 +50,12 @@ class CozIRisolate extends IsolateWrapper {
       try {
         serial.dispose();
       } on Exception catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
       } on Error catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -92,14 +92,14 @@ class CozIRisolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print('Isolate init task');
     }
 
     if (!(initialData as bool)) {
       try {
         serial = Serial('/dev/serial0', Baudrate.b9600);
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Serial interface info: ${serial.getSerialInfo()}');
           // Return firmware version and sensor serial number - two lines
           serial.writeString('Y\r\n');
@@ -113,7 +113,7 @@ class CozIRisolate extends IsolateWrapper {
         serial.writeString('K 2\r\n');
         // print any response
         var event = serial.read(256, 1000);
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Response ${event.toString()}');
         }
         sleep(const Duration(seconds: 2));
@@ -121,13 +121,13 @@ class CozIRisolate extends IsolateWrapper {
         sleep(const Duration(seconds: 5));
         return InitTaskResult(serial.toJson(), map);
       } on Exception catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
         return InitTaskResult.error(e.toString());
       } on Error catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -155,13 +155,13 @@ class CozIRisolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } on Exception catch (e, s) {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print('Exception details:\n $e');
         print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     } on Error catch (e, s) {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print('Error details:\n $e');
         print('Stack trace:\n $s');
       }

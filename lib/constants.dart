@@ -38,15 +38,20 @@ enum DashboardType {
   final String description;
 }
 
-// Copyright (c) 2024, the Flutter project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 DashboardType gDashboard = DashboardType.overview;
 
-const assetSensorIconPath = 'assets/images/sensor_icons/';
-const assetSensorImagesPath = 'assets/images/sensor_images/';
-const assetSensorImages = 'assets/images/images/';
+var assetSensorIconPath = 'assets/images/sensor_icons/';
+var assetSensorImagesPath = 'assets/images/sensor_images/';
+var assetSensorImages = 'assets/images/images/';
+
+String? gPackageName = null;
+
+void useAsPackage() {
+  gPackageName = 'flutter_pi_sensor_tester';
+  assetSensorIconPath = 'packages/$gPackageName/assets/images/sensor_icons/';
+  assetSensorImagesPath = 'packages/$gPackageName/assets/images/sensor_images/';
+  assetSensorImages = 'packages/$gPackageName/assets/images/images/';
+}
 
 /// Installed google fonts.
 enum MonoFonts {
@@ -90,49 +95,58 @@ var gSensorBoxTextStyle = TextStyle(
     color: gTextColor,
     fontFamily: gMonoFontName,
     fontSize: 70,
-    fontWeight: FontWeight.w700);
+    fontWeight: FontWeight.w700,
+    package: gPackageName);
 
 var gSensorInfoTextStyle = TextStyle(
     color: gTextColor,
     fontFamily: gMonoFontName,
     fontSize: 20,
-    fontWeight: FontWeight.w800);
+    fontWeight: FontWeight.w800,
+    package: gPackageName);
 
 var gOverviewDescriptionTextStyle = TextStyle(
     color: Colors.black87,
     fontFamily: gMonoFontName,
     fontSize: 15,
-    fontWeight: FontWeight.w400);
+    fontWeight: FontWeight.w400,
+    package: gPackageName);
 
 var gErrorInfoTextStyle = TextStyle(
     color: gTextColor,
     fontFamily: gMonoFontName,
     fontSize: 18,
-    fontWeight: FontWeight.w800);
+    fontWeight: FontWeight.w800,
+    package: gPackageName);
 
 void rebuildFont() {
   gSensorBoxTextStyle = TextStyle(
       color: gTextColor,
       fontFamily: gMonoFontName,
       fontSize: 70,
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.w700,
+      package: gPackageName);
 
   gSensorInfoTextStyle = TextStyle(
       color: gTextColor,
       fontFamily: gMonoFontName,
       fontSize: 20,
-      fontWeight: FontWeight.w800);
+      fontWeight: FontWeight.w800,
+      package: gPackageName);
 
   gErrorInfoTextStyle = TextStyle(
       color: gTextColor,
       fontFamily: gMonoFontName,
       fontSize: 18,
-      fontWeight: FontWeight.w800);
+      fontWeight: FontWeight.w800,
+      package: gPackageName);
 }
 
 var gSensorBoxUnitTextStyle = gSensorBoxTextStyle.copyWith(fontSize: 40);
 var gSensorBoxIAQTextStyle = gSensorBoxTextStyle.copyWith(fontSize: 20);
-var gDateTextStyle = gSensorBoxTextStyle.copyWith(fontSize: 20);
+var gDateTextStyle = gSensorBoxTextStyle.copyWith(
+  fontSize: 20,
+);
 
 var gUnitSpace = const SizedBox(
   width: 8,

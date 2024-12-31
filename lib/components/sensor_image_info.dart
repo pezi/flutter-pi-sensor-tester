@@ -102,7 +102,7 @@ var gUsedImages = <SensorImageInfo>{};
 /// Returns [SensorImageInfo] defined by [sensor] type and [version] number.
 SensorImageInfo getSensorImageInfo(SensorImage sensor, int version) {
   if (!(version > 0 && version <= sensor.number)) {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print(imageMissingWarning);
     }
     // fallback
@@ -117,7 +117,7 @@ SensorImageInfo getSensorImageInfo(SensorImage sensor, int version) {
 /// Returns [AssetImage] defined by [sensor] type and [version] number.
 AssetImage getSensorImage(SensorImage sensor, int version) {
   if (!(version > 0 && version <= sensor.number)) {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print(imageMissingWarning);
     }
     // fallback

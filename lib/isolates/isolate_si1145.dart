@@ -59,12 +59,12 @@ class SI1145isolate extends IsolateWrapper {
       try {
         i2c.dispose();
       } on Exception catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
       } on Error catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -82,7 +82,7 @@ class SI1145isolate extends IsolateWrapper {
 
   @override
   InitTaskResult init() {
-    if (sensorDebug) {
+    if (gIsolateDebug) {
       print('Isolate init task');
     }
 
@@ -93,13 +93,13 @@ class SI1145isolate extends IsolateWrapper {
         si1145 = SI1145(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Exception details:\n $e');
           print('Stack trace:\n $s');
         }
         return InitTaskResult.error(e.toString());
       } on Error catch (e, s) {
-        if (sensorDebug) {
+        if (gIsolateDebug) {
           print('Error details:\n $e');
           print('Stack trace:\n $s');
         }
@@ -128,13 +128,13 @@ class SI1145isolate extends IsolateWrapper {
       ++counter;
       return MainTaskResult(false, m);
     } on Exception catch (e, s) {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print('Exception details:\n $e');
         print('Stack trace:\n $s');
       }
       return MainTaskResult.error(true, e.toString());
     } on Error catch (e, s) {
-      if (sensorDebug) {
+      if (gIsolateDebug) {
         print('Error details:\n $e');
         print('Stack trace:\n $s');
       }
