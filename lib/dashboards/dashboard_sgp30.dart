@@ -24,7 +24,7 @@ class DashboardSGP30 extends Dashboard {
     var ethanol = values['ethanol']! as int;
     var h2 = values['h2']! as int;
     var counter = values['c'] as int;
-
+    var i2c = values['i2c'] as int;
     var widgetMap = <int, Widget>{};
 
     widgetMap[0] = CO2(key: const ValueKey("0"), imageVersion: 2, co2: co2);
@@ -41,7 +41,7 @@ class DashboardSGP30 extends Dashboard {
     widgetMap[4] = SensorImageBox(
       key: const ValueKey("4"),
       sensor: "Sensor: SGP30",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c",
       icon: 'iaq_v1.png',
       counter: counter,
     );

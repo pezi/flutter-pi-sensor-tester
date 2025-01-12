@@ -20,7 +20,7 @@ class DashboardSI1145 extends Dashboard {
     var visible = values['visible']! as int;
     var infrared = values['ir']! as int;
     var uvIndex = values['uvIndex']! as double;
-
+    var i2c = values['i2c'] as int;
     var counter = values['c'] as int;
 
     var widgetMap = <int, Widget>{};
@@ -34,7 +34,7 @@ class DashboardSI1145 extends Dashboard {
     widgetMap[3] = SensorImageBox(
       key: const ValueKey("3"),
       sensor: "Sensor: SI1145",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c",
       icon: 'light_v1.png',
       counter: counter,
     );

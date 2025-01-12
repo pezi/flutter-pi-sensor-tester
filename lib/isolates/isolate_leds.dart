@@ -9,19 +9,24 @@ import 'package:dart_periphery/dart_periphery.dart';
 
 import '../components/led_box.dart';
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import 'isolate_helper.dart';
 
 Map<LedColor, GPIO> gpioMap = {};
 
 class LedsIsolate extends IsolateWrapper {
-  LedsIsolate(String isolateId, bool simulation)
-      : super(isolateId, simulation, IsolateModel.listener);
+  LedsIsolate(String isolateId, String initialData)
+      : super(isolateId, initialData, IsolateModel.listener) {
+    DemoConfig().update(initialData);
+  }
   LedsIsolate.empty() : super.empty();
 
   @override
   void processData(SendPort sendPort, Object data) {
+    DemoConfig config = DemoConfig();
+
     if (data is String) {
-      if (!(initialData as bool)) {
+      if (!config.isSimulation()) {
         for (var c in LedColor.values) {
           try {
             gpioMap[c]?.dispose();
@@ -38,7 +43,7 @@ class LedsIsolate extends IsolateWrapper {
     }
     List<Object?> array = data as List<Object?>;
 
-    if (!(initialData as bool)) {
+    if (!!config.isSimulation()) {
       gpioMap[LedColor.values[array[0] as int]]?.write(array[1] as bool);
     } else {
       if (gIsolateDebug) {
@@ -55,11 +60,13 @@ class LedsIsolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    if (!(config.isSimulation())) {
       try {
-        gpioMap[LedColor.red] = GPIO(18, GPIOdirection.gpioDirOut);
-        gpioMap[LedColor.yellow] = GPIO(16, GPIOdirection.gpioDirOut);
-        gpioMap[LedColor.green] = GPIO(5, GPIOdirection.gpioDirOut);
+        var leds = config.getLeds();
+        gpioMap[LedColor.red] = GPIO(leds[0], GPIOdirection.gpioDirOut);
+        gpioMap[LedColor.yellow] = GPIO(leds[1], GPIOdirection.gpioDirOut);
+        gpioMap[LedColor.green] = GPIO(leds[2], GPIOdirection.gpioDirOut);
         return InitTaskResult("{}", {});
       } catch (e) {
         return InitTaskResult.error(e.toString());

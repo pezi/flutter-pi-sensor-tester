@@ -8,7 +8,6 @@ import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 import '../components/clock.dart';
 import '../components/sensor_box.dart';
 import '../components/sensor_image_box.dart';
-import '../dart_constants.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardHatADC extends Dashboard {
@@ -19,6 +18,7 @@ class DashboardHatADC extends Dashboard {
     var values = result.data!;
     var analog = values['a']! as int;
     var counter = values['c'] as int;
+    var pin = values['pin'] as int;
 
     var widgetMap = <int, Widget>{};
 
@@ -29,8 +29,8 @@ class DashboardHatADC extends Dashboard {
     );
     widgetMap[1] = SensorImageBox(
       key: const ValueKey("1"),
-      sensor: "Sensor: ADC",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      sensor: "Sensor    : ADC",
+      interface: "Analog Pin: $pin",
       icon: 'converter_v1.png',
       counter: counter,
     );

@@ -9,6 +9,7 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
@@ -19,7 +20,10 @@ class CozIRisolate extends IsolateWrapper {
   int counter = 1;
   late Serial serial;
 
-  CozIRisolate(super.isolateId, Map<String, dynamic> super.initialData);
+  CozIRisolate(super.isolateId, String super.initialData) {
+    DemoConfig().update(initialData as String);
+  }
+
   CozIRisolate.empty() : super.empty();
 
   Map<String, dynamic> parserResult(String line) {
@@ -46,8 +50,8 @@ class CozIRisolate extends IsolateWrapper {
   @override
   void processData(SendPort sendPort, Object data) {
     String cmd = data as String;
-    Map<String, dynamic> config = initialData as Map<String, dynamic>;
-    if (!(config['simulate'] as bool)) {
+    DemoConfig config = DemoConfig();
+    if (!config.isSimulation()) {
       try {
         serial.dispose();
       } on Exception catch (e, s) {
@@ -77,6 +81,7 @@ class CozIRisolate extends IsolateWrapper {
 
     var values = parserResult(event.toString());
     values['c'] = counter;
+    values['serial'] = DemoConfig().getSerial();
     return values;
   }
 
@@ -87,7 +92,7 @@ class CozIRisolate extends IsolateWrapper {
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();
     values['co2'] = 500 + Random().nextInt(40);
-
+    values['serial'] = DemoConfig().getSerial();
     return values;
   }
 
@@ -97,11 +102,11 @@ class CozIRisolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    Map<String, dynamic> config = initialData as Map<String, dynamic>;
+    DemoConfig config = DemoConfig();
 
-    if (!(config['simulate'] as bool)) {
+    if (!config.isSimulation()) {
       try {
-        serial = Serial(config['serial'] as String, Baudrate.b9600);
+        serial = Serial(config.getSerial(), Baudrate.b9600);
         if (gIsolateDebug) {
           print('Serial interface info: ${serial.getSerialInfo()}');
           // Return firmware version and sensor serial number - two lines
@@ -146,8 +151,9 @@ class CozIRisolate extends IsolateWrapper {
     try {
       var m = <String, dynamic>{};
 
-      Map<String, dynamic> config = initialData as Map<String, dynamic>;
-      if (!(config['simulate'] as bool)) {
+      DemoConfig config = DemoConfig();
+      // real hardware in use?
+      if (!(config.isSimulation())) {
         m = getData();
       } else {
         m = getSimulatedData();

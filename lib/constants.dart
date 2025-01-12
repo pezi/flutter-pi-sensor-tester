@@ -11,9 +11,6 @@ import 'dart_constants.dart';
 
 const appVersion = "1.0.3";
 
-//
-bool gSimulateSensor = true;
-
 DashboardType gDashboard = DashboardType.overview;
 
 var assetSensorIconPath = 'assets/images/sensor_icons/';

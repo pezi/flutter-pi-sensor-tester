@@ -20,8 +20,8 @@ class DashboardSDC30 extends Dashboard {
     var temperature = values['t']! as double;
     var co2 = values['co2']! as double;
     var humidity = values['h']! as double;
-
     var counter = values['c'] as int;
+    var i2c = values['i2c'] as int;
 
     var widgetMap = <int, Widget>{};
 
@@ -34,7 +34,7 @@ class DashboardSDC30 extends Dashboard {
     widgetMap[3] = SensorImageBox(
       key: const ValueKey("3"),
       sensor: "Sensor: SDC30",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c",
       icon: 'co2_v2.png',
       counter: counter,
     );

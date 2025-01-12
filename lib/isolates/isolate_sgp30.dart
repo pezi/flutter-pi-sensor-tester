@@ -9,6 +9,7 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import 'isolate_helper.dart';
 
 class SGP30isolate extends IsolateWrapper {
@@ -16,7 +17,9 @@ class SGP30isolate extends IsolateWrapper {
   late I2C i2c;
   late SGP30 sgp30;
 
-  SGP30isolate(super.isolateId, bool super.simulation);
+  SGP30isolate(super.isolateId, String super.initialData) {
+    DemoConfig().update(initialData as String);
+  }
   SGP30isolate.empty() : super("", "");
 
   Map<String, dynamic> getData() {
@@ -31,7 +34,7 @@ class SGP30isolate extends IsolateWrapper {
 
     values['ethanol'] = raw.ethanol;
     values['h2'] = raw.h2;
-
+    values['i2c'] = i2c.busNum;
     return values;
   }
 
@@ -43,7 +46,7 @@ class SGP30isolate extends IsolateWrapper {
 
     values['ethanol'] = 10000 + Random().nextInt(100);
     values['h2'] = 12000 + Random().nextInt(100);
-
+    values['i2c'] = DemoConfig().getI2C();
     return values;
   }
 
@@ -53,9 +56,11 @@ class SGP30isolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    // real hardware in use?
+    if (!(config.isSimulation())) {
       try {
-        i2c = I2C(gI2C);
+        i2c = I2C(config.getI2C());
         sgp30 = SGP30(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } catch (e) {
@@ -69,7 +74,9 @@ class SGP30isolate extends IsolateWrapper {
   @override
   void processData(SendPort sendPort, Object data) {
     String cmd = data as String;
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    // real hardware in use?
+    if (!(config.isSimulation())) {
       try {
         i2c.dispose();
       } catch (e) {
@@ -90,7 +97,9 @@ class SGP30isolate extends IsolateWrapper {
     try {
       var m = <String, dynamic>{};
 
-      if (!(initialData as bool)) {
+      DemoConfig config = DemoConfig();
+      // real hardware in use?
+      if (!(config.isSimulation())) {
         m = getData();
       } else {
         m = getSimulatedData();

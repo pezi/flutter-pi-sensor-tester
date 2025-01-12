@@ -33,6 +33,7 @@ import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
 import 'dashboards/dashboard_si1145.dart';
 import 'dashboards/dashboard_tsl2591.dart';
+import 'demo_config.dart';
 import 'isolates/isolate_bme280.dart';
 import 'isolates/isolate_bme680.dart';
 import 'isolates/isolate_demo.dart';
@@ -92,7 +93,7 @@ typedef ParentUpdateCallback = void Function(Widget widget);
 
 Widget createDashboard(ParentUpdateCallback callback) {
   return Banner(
-    message: gSimulateSensor ? "Simulation" : "Hardware",
+    message: DemoConfig().isSimulation() ? "Simulation" : "Hardware",
     location: BannerLocation.topStart,
     child: _createDashboard(callback),
   );
@@ -100,6 +101,7 @@ Widget createDashboard(ParentUpdateCallback callback) {
 
 /// _
 Widget _createDashboard(ParentUpdateCallback callback) {
+  var json = DemoConfig().toJSON();
   switch (gDashboard) {
     case DashboardType.demo:
       return DashboardDemo(
@@ -116,64 +118,57 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       );
     case DashboardType.bme680:
       return DashboardBME680(
-        isolateWrapper:
-            BME680isolate(DashboardType.bme680.name, gSimulateSensor),
+        isolateWrapper: BME680isolate(DashboardType.bme680.name, json),
       );
     case DashboardType.bme280:
       return DashboardBME280(
-        isolateWrapper:
-            BME280isolate(DashboardType.bme280.name, gSimulateSensor),
+        isolateWrapper: BME280isolate(DashboardType.bme280.name, json),
       );
     case DashboardType.sht31:
       return DashboardSHT31(
-        isolateWrapper: SHT31isolate(DashboardType.sht31.name, gSimulateSensor),
+        isolateWrapper: SHT31isolate(DashboardType.sht31.name, json),
       );
     case DashboardType.mcp9808:
       return DashboardMCP9808(
-        isolateWrapper:
-            MCP9808isolate(DashboardType.mcp9808.name, gSimulateSensor),
+        isolateWrapper: MCP9808isolate(DashboardType.mcp9808.name, json),
       );
     case DashboardType.mlx90615:
       return DashboardMLX90615(
-        isolateWrapper:
-            MLX90615isolate(DashboardType.mlx90615.name, gSimulateSensor),
+        isolateWrapper: MLX90615isolate(DashboardType.mlx90615.name, json),
       );
     case DashboardType.sdc30:
       return DashboardSDC30(
-        isolateWrapper: SDC30isolate(DashboardType.sdc30.name, gSimulateSensor),
+        isolateWrapper: SDC30isolate(DashboardType.sdc30.name, json),
       );
     case DashboardType.gesture:
       return DashboardGesture(
         isolateWrapper:
-            GestureDetectorIsolate(DashboardType.gesture.name, gSimulateSensor),
+            GestureDetectorIsolate(DashboardType.gesture.name, json),
       );
     case DashboardType.sgp30:
       return DashboardSGP30(
-        isolateWrapper: SGP30isolate(DashboardType.sgp30.name, gSimulateSensor),
+        isolateWrapper: SGP30isolate(DashboardType.sgp30.name, json),
       );
     case DashboardType.cozir:
       return DashboardCozIR(
-        isolateWrapper: CozIRisolate(DashboardType.cozir.name,
-            {"simulate": gSimulateSensor, "serial": gConfig['serial']}),
+        isolateWrapper: CozIRisolate(DashboardType.cozir.name, json),
       );
     case DashboardType.leds:
       return DashboardLeds(
-        isolateWrapper: LedsIsolate(DashboardType.leds.name, gSimulateSensor),
+        isolateWrapper: LedsIsolate(DashboardType.leds.name, json),
       );
     case DashboardType.si1145:
       return DashboardSI1145(
-        isolateWrapper:
-            SI1145isolate(DashboardType.si1145.name, gSimulateSensor),
+        isolateWrapper: SI1145isolate(DashboardType.si1145.name, json),
       );
     case DashboardType.overview:
       return DashboardOverview(callback: callback);
     case DashboardType.adc:
       return DashboardHatADC(
-          isolateWrapper:
-              HatADCisolate(DashboardType.adc.name, gSimulateSensor));
+          isolateWrapper: HatADCisolate(DashboardType.adc.name, json));
     case DashboardType.tsl2591:
       return DashboardTSL2591(
-          isolateWrapper: TSL2591isolate(gDashboard.name, gSimulateSensor));
+          isolateWrapper: TSL2591isolate(gDashboard.name, json));
   }
 }
 

@@ -33,21 +33,3 @@ enum DashboardType {
   final String description;
   final Interface interface;
 }
-
-/// Raspberry Pi I2C bus number
-var gI2C = 1;
-
-int getI2Cbus() {
-  return gI2C;
-}
-
-void setI2Cbus(int bus) {
-  gI2C = bus;
-}
-
-Map<String, dynamic> gConfig = {
-  "serial": "/dev/serial0",
-  "leds": [18, 16, 5],
-  "hat": "grove",
-  "analogPin": 0
-};

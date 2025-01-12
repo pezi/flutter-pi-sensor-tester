@@ -19,7 +19,7 @@ class DashboardMLX90615 extends Dashboard {
     var values = result.data!;
     var temperature = values['t']! as double;
     var counter = values['c'] as int;
-
+    var i2c = values['i2c'] as int;
     var widgetMap = <int, Widget>{};
 
     widgetMap[0] = Thermometer(
@@ -27,7 +27,7 @@ class DashboardMLX90615 extends Dashboard {
     widgetMap[1] = SensorImageBox(
       key: const ValueKey("1"),
       sensor: "Sensor: MLX90615",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c",
       icon: 'thermometer_v7.png',
       counter: counter,
     );

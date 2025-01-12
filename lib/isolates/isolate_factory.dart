@@ -7,6 +7,7 @@ import 'isolate_helper.dart';
 import 'isolate_bme680.dart';
 
 import 'isolate_bme280.dart';
+import 'isolate_leds.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 import 'isolate_mcp9808.dart';
@@ -26,44 +27,45 @@ class IsolateClassFactory {
       IsolateWrapper Function(String isolateId, Object data)> _constructors = {
     BME680isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            BME680isolate(isolateId, data as bool),
+            BME680isolate(isolateId, data as String),
     BME280isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            BME280isolate(isolateId, data as bool),
+            BME280isolate(isolateId, data as String),
     SHT31isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            SHT31isolate(isolateId, data as bool),
+            SHT31isolate(isolateId, data as String),
     SGP30isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            SGP30isolate(isolateId, data as bool),
+            SGP30isolate(isolateId, data as String),
     MCP9808isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            MCP9808isolate(isolateId, data as bool),
+            MCP9808isolate(isolateId, data as String),
     MLX90615isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            MLX90615isolate(isolateId, data as bool),
+            MLX90615isolate(isolateId, data as String),
     GestureDetectorIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            GestureDetectorIsolate(isolateId, data as bool),
+            GestureDetectorIsolate(isolateId, data as String),
     CozIRisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            CozIRisolate(isolateId, data as Map<String, dynamic>),
-    /* LedsIsolate.empty().runtimeType.toString():
-        (String isolateId, Object data) => LedsIsolate(isolateId, data as bool), */
+            CozIRisolate(isolateId, data as String),
+    LedsIsolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            LedsIsolate(isolateId, data as String),
     DemoIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) => DemoIsolate(isolateId, data),
     SDC30isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            SDC30isolate(isolateId, data as bool),
+            SDC30isolate(isolateId, data as String),
     SI1145isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            SI1145isolate(isolateId, data as bool),
+            SI1145isolate(isolateId, data as String),
     HatADCisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            HatADCisolate(isolateId, data as bool),
+            HatADCisolate(isolateId, data as String),
     TSL2591isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            TSL2591isolate(isolateId, data as bool),
+            TSL2591isolate(isolateId, data as String),
   };
 
   static IsolateWrapper createInstance(

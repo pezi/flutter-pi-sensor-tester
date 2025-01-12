@@ -10,6 +10,7 @@ import 'package:flutter_pi_sensor_tester/constants.dart';
 import '../components/info_box.dart';
 import '../components/title_box.dart';
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import '../isolates/isolate_helper.dart';
 import '../main.dart';
 
@@ -59,6 +60,7 @@ class _ConfigurationTabState extends State<ConfigurationTab> {
 
   @override
   Widget build(BuildContext context) {
+    DemoConfig config = DemoConfig();
     var list = <Widget>[
       const TitleBox(text: 'Program control'),
       const SizedBox(
@@ -67,10 +69,10 @@ class _ConfigurationTabState extends State<ConfigurationTab> {
       CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         title: const Text("Simulation mode"),
-        value: gSimulateSensor,
+        value: config.isSimulation(),
         onChanged: (bool? value) {
           setState(() {
-            gSimulateSensor = value!;
+            config.setSimulation(value!);
           });
         },
       ),

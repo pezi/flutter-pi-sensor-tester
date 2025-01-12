@@ -20,7 +20,7 @@ class DashboardGesture extends Dashboard {
     var values = result.data!;
     var gesture = Gesture.values[values['gesture']! as int];
     var counter = values['c'] as int;
-
+    var i2c = values['i2c'] as int;
     var widgetMap = <int, Widget>{};
 
     widgetMap[0] = sensor_box.GestureDetector(
@@ -28,7 +28,7 @@ class DashboardGesture extends Dashboard {
     widgetMap[1] = SensorImageBox(
       key: const ValueKey("1"),
       sensor: "Grove Gesture Sensor",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c}",
       icon: 'gesture_v2.png',
       counter: counter,
     );

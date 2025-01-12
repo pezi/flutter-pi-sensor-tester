@@ -8,7 +8,6 @@ import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 import '../components/clock.dart';
 import '../components/sensor_box.dart';
 import '../components/sensor_image_box.dart';
-import '../dart_constants.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardTSL2591 extends Dashboard {
@@ -22,6 +21,7 @@ class DashboardTSL2591 extends Dashboard {
     var lux = values['lux']! as int;
     var full = values['full']! as int;
     var counter = values['c'] as int;
+    var i2c = values['i2c'] as int;
 
     var widgetMap = <int, Widget>{};
 
@@ -45,7 +45,7 @@ class DashboardTSL2591 extends Dashboard {
     widgetMap[4] = SensorImageBox(
       key: const ValueKey("4"),
       sensor: "Sensor: TSL2591",
-      interface: "I2C Bus: ${gI2C.toString()}",
+      interface: "I2C Bus: $i2c",
       icon: 'spectrum_v2.png',
       counter: counter,
     );

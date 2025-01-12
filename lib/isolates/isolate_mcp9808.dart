@@ -9,6 +9,7 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import 'isolate_helper.dart';
 
 /// Isolate to handle a MCP9808 sensor: temperature and humidity
@@ -17,13 +18,16 @@ class MCP9808isolate extends IsolateWrapper {
   late I2C i2c;
   late MCP9808 mcp9808;
 
-  MCP9808isolate(super.isolateId, bool super.simulation);
+  MCP9808isolate(super.isolateId, String super.initialData) {
+    DemoConfig().update(initialData as String);
+  }
   MCP9808isolate.empty() : super("", "");
 
   @override
   void processData(SendPort sendPort, Object data) {
     String cmd = data as String;
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    if (!(config.isSimulation())) {
       try {
         i2c.dispose();
       } on Exception catch (e, s) {
@@ -54,7 +58,7 @@ class MCP9808isolate extends IsolateWrapper {
 
     values['c'] = counter;
     values['t'] = result.temperature;
-
+    values['i2c'] = i2c.busNum;
     return values;
   }
 
@@ -63,7 +67,7 @@ class MCP9808isolate extends IsolateWrapper {
     var values = <String, dynamic>{};
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
-
+    values['i2c'] = DemoConfig().getI2C();
     return values;
   }
 
@@ -73,9 +77,10 @@ class MCP9808isolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    if (!(config.isSimulation())) {
       try {
-        i2c = I2C(gI2C);
+        i2c = I2C(config.getI2C());
         mcp9808 = MCP9808(i2c);
         return InitTaskResult(i2c.toJson(), getData());
       } on Exception catch (e, s) {
@@ -101,7 +106,9 @@ class MCP9808isolate extends IsolateWrapper {
     try {
       var m = <String, dynamic>{};
 
-      if (!(initialData as bool)) {
+      DemoConfig config = DemoConfig();
+      // real hardware in use?
+      if (!(config.isSimulation())) {
         m = getData();
       } else {
         m = getSimulatedData();

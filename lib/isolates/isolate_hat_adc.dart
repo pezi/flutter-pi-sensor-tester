@@ -9,9 +9,8 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
+import '../demo_config.dart';
 import 'isolate_helper.dart';
-
-const gAnalogPin = 0;
 
 /// Isolate to handle an analog pin/DAC of am extension hat.
 class HatADCisolate extends IsolateWrapper {
@@ -19,13 +18,16 @@ class HatADCisolate extends IsolateWrapper {
   late GroveBaseHat hat;
   late NanoHatHub nanoHat;
 
-  HatADCisolate(super.isolateId, bool super.simulation);
+  HatADCisolate(super.isolateId, String super.initialData) {
+    DemoConfig().update(initialData as String);
+  }
   HatADCisolate.empty() : super("", "");
 
   @override
   void processData(SendPort sendPort, Object data) {
     String cmd = data as String;
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    if (!(config.isSimulation())) {
       try {} on Exception catch (e, s) {
         if (gIsolateDebug) {
           print('Exception details:\n $e');
@@ -51,8 +53,9 @@ class HatADCisolate extends IsolateWrapper {
     var values = <String, dynamic>{};
 
     values['c'] = counter;
-    values['a'] = hat.readADCraw(gAnalogPin);
-
+    var pin = DemoConfig().getAnalogPin();
+    values['a'] = hat.readADCraw(pin);
+    values['pin'] = pin;
     return values;
   }
 
@@ -61,7 +64,8 @@ class HatADCisolate extends IsolateWrapper {
     var values = <String, dynamic>{};
     values['c'] = counter;
     values['a'] = 100 + Random().nextInt(100);
-
+    var pin = DemoConfig().getAnalogPin();
+    values['pin'] = pin;
     return values;
   }
 
@@ -71,7 +75,9 @@ class HatADCisolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    if (!(initialData as bool)) {
+    DemoConfig config = DemoConfig();
+    // real hardware in use?
+    if (!(config.isSimulation())) {
       try {
         hat = GroveBaseHat();
         return InitTaskResult(hat.toJson(), getData());
@@ -98,7 +104,9 @@ class HatADCisolate extends IsolateWrapper {
     try {
       var m = <String, dynamic>{};
 
-      if (!(initialData as bool)) {
+      DemoConfig config = DemoConfig();
+      // real hardware in use?
+      if (!(config.isSimulation())) {
         m = getData();
       } else {
         m = getSimulatedData();

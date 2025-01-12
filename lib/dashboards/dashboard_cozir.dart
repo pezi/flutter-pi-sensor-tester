@@ -15,7 +15,7 @@ Map<int, Widget> buildCozIR(Map<String, dynamic> values) {
   var humidity = values['h']! as double;
   var co2 = values['co2']! as int;
   var counter = values['c'] as int;
-
+  var serial = values['serial'] as String;
   var widgetMap = <int, Widget>{};
 
   widgetMap[0] = Thermometer(
@@ -26,7 +26,7 @@ Map<int, Widget> buildCozIR(Map<String, dynamic> values) {
   widgetMap[3] = SensorImageBox(
     key: const ValueKey("3"),
     sensor: "Sensor: BME680",
-    interface: "serial",
+    interface: "serial: $serial",
     icon: 'co2_v2.png',
     counter: counter,
   );
