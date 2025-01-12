@@ -2,8 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// import 'package:dart_periphery/dart_periphery.dart';
-import 'package:dart_periphery/dart_periphery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pi_sensor_tester/components/sensor_image_info.dart';
 import 'package:flutter_pi_sensor_tester/components/sensor_painter.dart';
@@ -22,6 +20,7 @@ class SensorBox extends StatelessWidget {
   final Color customBackgroundColor;
   final Color customBorderColor;
   final bool showUnit;
+  final String additionalText;
 
   const SensorBox(
       {super.key,
@@ -32,6 +31,7 @@ class SensorBox extends StatelessWidget {
       required this.rawValue,
       this.unit = '',
       this.showUnit = true,
+      this.additionalText = '',
       this.customBackgroundColor = Colors.green,
       this.customBorderColor = Colors.black});
 
@@ -152,11 +152,11 @@ class SensorBox extends StatelessWidget {
         style: gSensorBoxUnitTextStyle,
       ));
 
-      AirQuality iaq = getAirQuality((rawValue as int));
+      // AirQuality iaq = getAirQuality((rawValue as int));
       line.add(gUnitSpace);
 
-      Text quality = Text(iaq.toString(), style: gSensorBoxIAQTextStyle);
-
+      // Text quality = Text(iaq.toString(), style: gSensorBoxIAQTextStyle);
+      Text quality = Text(additionalText, style: gSensorBoxIAQTextStyle);
       wList.add(Center(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -172,7 +172,7 @@ class SensorBox extends StatelessWidget {
             top: 38,
             child: Container(
               decoration: BoxDecoration(
-                color: Color(iaq.color),
+                color: Colors.green,
                 border: Border.all(color: Colors.grey),
                 // borderRadius: BorderRadius.circular(12),
               ),
@@ -207,11 +207,14 @@ class SensorBox extends StatelessWidget {
 
 class GestureDetector extends SensorBox {
   GestureDetector(
-      {super.key, required super.imageVersion, required Gesture gesture})
+      {super.key,
+      required super.imageVersion,
+      required String gesture,
+      required int index})
       : super(
             image: SensorImage.gesture,
-            formattedValue: gesture.name,
-            rawValue: gesture.index);
+            formattedValue: gesture,
+            rawValue: index);
 }
 
 class Thermometer extends SensorBox {
@@ -297,11 +300,16 @@ class Hygrometer extends SensorBox {
 
 /// Index air quality
 class IAQ extends SensorBox {
-  IAQ({super.key, required super.imageVersion, required int iaq})
+  IAQ(
+      {super.key,
+      required super.imageVersion,
+      required int iaq,
+      required String iaqText})
       : super(
             image: SensorImage.iaq,
             formattedValue: iaq.toString(),
-            rawValue: iaq);
+            rawValue: iaq,
+            additionalText: iaqText);
 }
 
 class CO2 extends SensorBox {

@@ -96,9 +96,6 @@ class TaskIteration {
   TaskIteration.infinite() : iterations = -1;
 }
 
-/// Sub tasks
-enum TaskMethod { init, main, exit, error }
-
 /// Isolate model
 enum IsolateModel { loop, listener, undefined }
 
@@ -138,6 +135,9 @@ abstract class IsolateWrapper {
     sendPort.send(map);
   }
 }
+
+/// Sub tasks
+enum TaskMethod { init, main, exit, error }
 
 class IsolateError {
   final TaskMethod method;

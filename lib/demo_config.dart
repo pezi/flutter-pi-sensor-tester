@@ -44,6 +44,10 @@ class DemoConfig implements FactoryModel {
     return _gConfig[ConfigEntry.i2c];
   }
 
+  void setI2C(int busNum) {
+    _gConfig[ConfigEntry.i2c] = busNum;
+  }
+
   List<int> getLeds() {
     return _gConfig[ConfigEntry.leds].cast<int>();
   }

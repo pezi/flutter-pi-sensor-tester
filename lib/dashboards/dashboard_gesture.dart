@@ -23,7 +23,11 @@ class DashboardGesture extends Dashboard {
     var widgetMap = <int, Widget>{};
 
     widgetMap[0] = sensor_box.GestureDetector(
-        key: const ValueKey("0"), imageVersion: 1, gesture: gesture);
+      key: const ValueKey("0"),
+      imageVersion: 1,
+      gesture: gesture.name,
+      index: gesture.index,
+    );
     widgetMap[1] = SensorImageBox(
       key: const ValueKey("1"),
       sensor: "Grove Gesture Sensor",

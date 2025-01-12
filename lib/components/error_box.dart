@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+
 import '../isolates/isolate_helper.dart';
 import 'info_box.dart';
 
