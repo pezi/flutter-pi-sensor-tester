@@ -3,18 +3,15 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'isolate_helper.dart';
-
 import 'isolate_bme680.dart';
-
 import 'isolate_bme280.dart';
-import 'isolate_leds.dart';
 import 'isolate_sgp30.dart';
 import 'isolate_sht31.dart';
 import 'isolate_mcp9808.dart';
 import 'isolate_cozir.dart';
 import 'isolate_gesture.dart';
 import 'isolate_mlx90615.dart';
-// import 'isolate_leds.dart';
+import 'isolate_leds.dart';
 import 'isolate_demo.dart';
 import 'isolate_hat_adc.dart';
 import 'isolate_sdc30.dart';

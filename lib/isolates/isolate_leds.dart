@@ -7,7 +7,7 @@ import 'dart:isolate';
 
 import 'package:dart_periphery/dart_periphery.dart';
 
-import '../components/led_box.dart';
+// import '../components/led_box.dart';
 import '../dart_constants.dart';
 import '../demo_config.dart';
 import 'isolate_helper.dart';

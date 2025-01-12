@@ -9,7 +9,6 @@ import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 import '../components/clock.dart';
 import '../components/sensor_box.dart' as sensor_box;
 import '../components/sensor_image_box.dart';
-import '../dart_constants.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardGesture extends Dashboard {

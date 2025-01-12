@@ -7,6 +7,7 @@ import 'package:flutter_pi_sensor_tester/components/led_box.dart';
 import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 
 import '../components/clock.dart';
+import '../dart_constants.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardLeds extends Dashboard {

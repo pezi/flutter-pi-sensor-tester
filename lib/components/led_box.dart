@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pi_sensor_tester/isolates/isolate_leds.dart';
 
 import '../constants.dart';
+import '../dart_constants.dart';
 import '../isolates/isolate_helper.dart';
 import 'info_box.dart';
 
@@ -22,16 +23,6 @@ Map<LedColor, bool> gLedStatus = {
   LedColor.green: false,
   LedColor.yellow: false
 };
-
-/// Led colors: red, yellow and green
-enum LedColor {
-  red(Colors.red),
-  yellow(Colors.yellow),
-  green(Colors.green);
-
-  const LedColor(this.color);
-  final Color color;
-}
 
 /// Box with a button which represents a [color] led with the [status] on or off
 /// and a [label] including a button pressed [counter]. [isolateId] is used
@@ -64,7 +55,7 @@ class LedBox extends StatelessWidget {
           child: IconButton(
             iconSize: 90,
             icon: const Icon(Icons.lightbulb),
-            color: status ? color.color : Colors.black54,
+            color: status ? Color(color.color) : Colors.black54,
             onPressed: () {
               // get the running isolate by Id
               IsolateHelper ih = getByIsolateId(isolateId) as IsolateHelper;

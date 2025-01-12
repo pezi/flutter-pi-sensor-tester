@@ -33,3 +33,13 @@ enum DashboardType {
   final String description;
   final Interface interface;
 }
+
+/// Led colors: red, yellow and green
+enum LedColor {
+  red(0xFFDC143C),
+  yellow(0xFFFFD700),
+  green(0xFF98FF98);
+
+  const LedColor(this.color);
+  final int color;
+}
