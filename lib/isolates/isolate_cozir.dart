@@ -19,7 +19,7 @@ class CozIRisolate extends IsolateWrapper {
   int counter = 1;
   late Serial serial;
 
-  CozIRisolate(super.isolateId, bool super.simulation);
+  CozIRisolate(super.isolateId, Map<String, dynamic> super.initialData);
   CozIRisolate.empty() : super.empty();
 
   Map<String, dynamic> parserResult(String line) {
@@ -46,7 +46,8 @@ class CozIRisolate extends IsolateWrapper {
   @override
   void processData(SendPort sendPort, Object data) {
     String cmd = data as String;
-    if (!(initialData as bool)) {
+    Map<String, dynamic> config = initialData as Map<String, dynamic>;
+    if (!(config['simulate'] as bool)) {
       try {
         serial.dispose();
       } on Exception catch (e, s) {
@@ -96,9 +97,11 @@ class CozIRisolate extends IsolateWrapper {
       print('Isolate init task');
     }
 
-    if (!(initialData as bool)) {
+    Map<String, dynamic> config = initialData as Map<String, dynamic>;
+
+    if (!(config['simulate'] as bool)) {
       try {
-        serial = Serial('/dev/serial0', Baudrate.b9600);
+        serial = Serial(config['serial'] as String, Baudrate.b9600);
         if (gIsolateDebug) {
           print('Serial interface info: ${serial.getSerialInfo()}');
           // Return firmware version and sensor serial number - two lines
@@ -143,7 +146,8 @@ class CozIRisolate extends IsolateWrapper {
     try {
       var m = <String, dynamic>{};
 
-      if (!(initialData as bool)) {
+      Map<String, dynamic> config = initialData as Map<String, dynamic>;
+      if (!(config['simulate'] as bool)) {
         m = getData();
       } else {
         m = getSimulatedData();

@@ -5,38 +5,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'dart_constants.dart';
+
 // Raspberry Pi hardware defaults
 
 const appVersion = "1.0.3";
 
 //
 bool gSimulateSensor = true;
-
-/// Supported dashboards
-enum DashboardType {
-  overview.dummy(),
-  demo('clock_v3.png', 'Multi-stream demo'),
-  bme680('sensor_v1.png', 'Temperature, Humidity, Pressure, AQI'),
-  bme280('sensor_v3.png', 'Temperature, Humidity, Pressure'),
-  sht31('thermometer_v4.png', 'Temperature'),
-  sgp30('iaq_v1.png', 'Air quality sensor'),
-  cozir('co2_v2.png', 'Serial CO₂,Temperature, Humidity sensor'),
-  leds('rgb.png', 'GPIO based actuator demo'),
-  gesture('gesture_v2.png', 'Grove gesture sensor'),
-  mcp9808('thermometer_v5.png', 'Temperature'),
-  mlx90615('thermometer_v7.png', 'Temperature'),
-  sdc30('co2_v2.png', 'CO₂, Temperature, Humidity'),
-  si1145('light_v1.png', 'Visible & IR light, UV index'),
-  adc('converter_v1.png', "ADC - Analog to Digital"),
-  tsl2591('spectrum_v2.png', 'Lux, Visible, IR, Full spectrum light');
-
-  const DashboardType.dummy()
-      : image = 'dummy.png' '',
-        description = 'dummy';
-  const DashboardType(this.image, this.description);
-  final String image;
-  final String description;
-}
 
 DashboardType gDashboard = DashboardType.overview;
 

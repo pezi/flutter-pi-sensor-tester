@@ -23,6 +23,7 @@ import 'package:window_manager/window_manager.dart';
 import 'components/sensor_image_info.dart';
 import 'components/waiting_for_data.dart';
 import 'constants.dart';
+import 'dart_constants.dart';
 import 'dashboards/dashboard_bme280.dart';
 import 'dashboards/dashboard_demo.dart';
 import 'dashboards/dashboard_mcp9808.dart';
@@ -152,7 +153,8 @@ Widget _createDashboard(ParentUpdateCallback callback) {
       );
     case DashboardType.cozir:
       return DashboardCozIR(
-        isolateWrapper: CozIRisolate(DashboardType.cozir.name, gSimulateSensor),
+        isolateWrapper: CozIRisolate(DashboardType.cozir.name,
+            {"simulate": gSimulateSensor, "serial": gConfig['serial']}),
       );
     case DashboardType.leds:
       return DashboardLeds(

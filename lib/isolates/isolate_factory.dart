@@ -47,7 +47,7 @@ class IsolateClassFactory {
             GestureDetectorIsolate(isolateId, data as bool),
     CozIRisolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
-            CozIRisolate(isolateId, data as bool),
+            CozIRisolate(isolateId, data as Map<String, dynamic>),
     /* LedsIsolate.empty().runtimeType.toString():
         (String isolateId, Object data) => LedsIsolate(isolateId, data as bool), */
     DemoIsolate.empty().runtimeType.toString():

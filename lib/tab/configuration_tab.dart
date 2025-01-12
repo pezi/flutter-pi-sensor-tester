@@ -9,6 +9,7 @@ import 'package:flutter_pi_sensor_tester/constants.dart';
 
 import '../components/info_box.dart';
 import '../components/title_box.dart';
+import '../dart_constants.dart';
 import '../isolates/isolate_helper.dart';
 import '../main.dart';
 

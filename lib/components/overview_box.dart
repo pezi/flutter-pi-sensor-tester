@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pi_sensor_tester/constants.dart';
 
+import '../dart_constants.dart';
 import 'info_box.dart';
 
 /// Info box which displays some sensor information.

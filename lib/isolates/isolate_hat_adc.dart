@@ -17,6 +17,7 @@ const gAnalogPin = 0;
 class HatADCisolate extends IsolateWrapper {
   int counter = 1;
   late GroveBaseHat hat;
+  late NanoHatHub nanoHat;
 
   HatADCisolate(super.isolateId, bool super.simulation);
   HatADCisolate.empty() : super("", "");

@@ -7,6 +7,7 @@ import 'dart:isolate';
 import 'dart:math';
 
 import 'package:dart_periphery/dart_periphery.dart';
+import 'package:flutter_pi_sensor_tester/isolates/helper.dart';
 
 import '../dart_constants.dart';
 import 'isolate_helper.dart';
@@ -55,7 +56,7 @@ class BME680isolate extends IsolateWrapper {
     var result = bme680.getValues();
     bme680.getHumidityOversample();
 
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.bme680);
 
     values['c'] = counter;
     values['t'] = result.temperature;
@@ -68,7 +69,7 @@ class BME680isolate extends IsolateWrapper {
 
   /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.bme680);
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();

@@ -28,7 +28,7 @@ abstract class TaskResult {
     buf.write('{');
     for (String key in map.keys) {
       if (key.startsWith("_")) {
-        // TODO
+        // TODO - add internal infos
         continue;
       }
       if (index > 0) {
@@ -41,7 +41,7 @@ abstract class TaskResult {
       } else if (v is double) {
         buf.write(v);
       } else if (v is String) {
-        buf.write('"${jsonEncode(v)}"');
+        buf.write('${jsonEncode(v)}');
       }
       ++index;
     }

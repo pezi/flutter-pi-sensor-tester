@@ -9,6 +9,7 @@ import 'dart:math';
 import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
+import 'helper.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
@@ -27,7 +28,7 @@ class BME280isolate extends IsolateWrapper {
   Map<String, dynamic> getData() {
     var result = bme280.getValues();
 
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.bme280);
 
     values['c'] = counter;
     values['t'] = result.temperature;
@@ -39,7 +40,7 @@ class BME280isolate extends IsolateWrapper {
 
   /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.bme280);
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();
