@@ -11,20 +11,14 @@ import '../components/sensor_image_box.dart';
 // An independent file to make this code usable for Flutter web without relying
 // on the dart_periphery dependency!
 
-/// Returns a map of widgets which contains the BME680 sensor data.
-Map<int, Widget> buildBME680(Map<String, dynamic> values) {
+/// Returns a map of widgets which contains the BME280 sensor data.
+Map<int, Widget> buildBME280(Map<String, dynamic> values) {
   var temperature = values['t']! as double;
   var pressure = values['p']! as double;
   var humidity = values['h']! as double;
 
-  // air quality
-  var iaq = values['iaq_int']! as int;
-  var iaqText = values['iaq_txt']! as String;
-  var iaqColor = values['iaq_color']! as int;
-
   var counter = values['c'] as int;
   var i2c = values['i2c'] as int;
-
   var widgetMap = <int, Widget>{};
 
   widgetMap[0] = Thermometer(
@@ -33,23 +27,13 @@ Map<int, Widget> buildBME680(Map<String, dynamic> values) {
       Barometer(key: const ValueKey("1"), imageVersion: 1, pressure: pressure);
   widgetMap[2] =
       Hygrometer(key: const ValueKey("2"), imageVersion: 5, humidity: humidity);
-
-  widgetMap[3] = IAQ(
+  widgetMap[3] = SensorImageBox(
     key: const ValueKey("3"),
-    imageVersion: 2,
-    iaq: iaq,
-    iaqText: iaqText,
-    iaqColor: iaqColor,
-  );
-
-  widgetMap[4] = SensorImageBox(
-    key: const ValueKey("4"),
-    sensor: "Sensor: BME680",
+    sensor: "Sensor: BME280",
     interface: "I2C Bus: $i2c",
-    icon: 'sensor_v1.png',
+    icon: 'sensor_v3.png',
     counter: counter,
   );
-  widgetMap[5] = const Clock(key: ValueKey("5"));
-
+  widgetMap[4] = const Clock(key: ValueKey("4"));
   return widgetMap;
 }
