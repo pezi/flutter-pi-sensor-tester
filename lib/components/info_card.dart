@@ -37,7 +37,8 @@ class InfoCard extends StatelessWidget {
   final String url;
   final CardType cardType;
 
-  /// Creates an URL card with a leading information [widget], a [url] and a [text].
+  /// Creates an URL card with a leading information [widget], a [url]
+  /// and a [text].
   const InfoCard.url(
       {super.key, required this.widget, required this.url, required this.text})
       : cardType = CardType.url;

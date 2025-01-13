@@ -9,7 +9,7 @@ import 'package:flutter_pi_sensor_tester/constants.dart';
 
 import 'info_box.dart';
 
-/// Box widget to display sensor data.
+/// Sensor widget to display sensor data.
 class SensorBox extends StatelessWidget {
   final SensorImage image;
   final int imageVersion;
@@ -21,6 +21,7 @@ class SensorBox extends StatelessWidget {
   final Color customBorderColor;
   final bool showUnit;
   final String additionalText;
+  final int additionalColor;
 
   const SensorBox(
       {super.key,
@@ -32,6 +33,7 @@ class SensorBox extends StatelessWidget {
       this.unit = '',
       this.showUnit = true,
       this.additionalText = '',
+      this.additionalColor = 0,
       this.customBackgroundColor = Colors.green,
       this.customBorderColor = Colors.black});
 
@@ -152,10 +154,15 @@ class SensorBox extends StatelessWidget {
         style: gSensorBoxUnitTextStyle,
       ));
 
+      // iaq data extraction moved to ab independent file to make this code
+      // usable for Flutter web without relying on the dart_periphery
+      // dependency!
+      //
       // AirQuality iaq = getAirQuality((rawValue as int));
+      // Text quality = Text(iaq.toString(), style: gSensorBoxIAQTextStyle);
+
       line.add(gUnitSpace);
 
-      // Text quality = Text(iaq.toString(), style: gSensorBoxIAQTextStyle);
       Text quality = Text(additionalText, style: gSensorBoxIAQTextStyle);
       wList.add(Center(
         child: Row(
@@ -172,7 +179,7 @@ class SensorBox extends StatelessWidget {
             top: 38,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Color(additionalColor),
                 border: Border.all(color: Colors.grey),
                 // borderRadius: BorderRadius.circular(12),
               ),
@@ -304,12 +311,14 @@ class IAQ extends SensorBox {
       {super.key,
       required super.imageVersion,
       required int iaq,
-      required String iaqText})
+      required String iaqText,
+      required int iaqColor})
       : super(
             image: SensorImage.iaq,
             formattedValue: iaq.toString(),
             rawValue: iaq,
-            additionalText: iaqText);
+            additionalText: iaqText,
+            additionalColor: iaqColor);
 }
 
 class CO2 extends SensorBox {

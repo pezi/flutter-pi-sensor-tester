@@ -24,9 +24,10 @@ Map<LedColor, bool> gLedStatus = {
   LedColor.yellow: false
 };
 
-/// Box with a button which represents a [color] led with the [status] on or off
-/// and a [label] including a button pressed [counter]. [isolateId] is used
-/// internally for communication with the [LedsIsolate] instance.
+/// Box widget with a button which represents a [color] led with the [status]
+/// on or off and a [label] including a button pressed [counter].
+/// [isolateId] is used internally for communication with the
+/// [LedsIsolate] instance.
 class LedBox extends StatelessWidget {
   const LedBox(
       {super.key,
@@ -44,10 +45,10 @@ class LedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var wList = <Widget>[];
+    var widgetList = <Widget>[];
     bool status = gLedStatus[color] as bool;
     // add the image
-    wList.add(
+    widgetList.add(
       SizedBox(
         width: 100,
         height: 100,
@@ -70,10 +71,10 @@ class LedBox extends StatelessWidget {
       ),
     );
 
-    wList.add(const SizedBox(
+    widgetList.add(const SizedBox(
       width: 15,
     ));
-    wList.add(Center(
+    widgetList.add(Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +97,7 @@ class LedBox extends StatelessWidget {
 
     return InfoBox(
       child: Row(
-        children: wList,
+        children: widgetList,
       ),
     );
   }

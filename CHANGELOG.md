@@ -1,5 +1,5 @@
 ## 1.0.4
-* Start with 1.0.4 
+* Reorg and rework code the make code reusable for project [flutter_sensor_test](https://github.com/pezi/flutter_sensor_tester)
 
 ## 1.0.3
 * Add ADC (Analog Digital Converter) demo

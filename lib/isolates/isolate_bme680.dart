@@ -66,7 +66,13 @@ class BME680isolate extends IsolateWrapper {
     values['t'] = result.temperature;
     values['h'] = result.humidity;
     values['p'] = result.pressure;
-    values['a'] = result.airQualityScore.toInt();
+    values['iaq_int'] = result.airQualityScore.toInt();
+
+    // pass the
+    AirQuality iaq = getAirQuality(result.airQualityScore.toInt());
+    values['iaq_txt'] = iaq.toString();
+    values['iaq_color'] = iaq.color;
+
     values['i2c'] = i2c.busNum;
 
     return values;
@@ -79,7 +85,12 @@ class BME680isolate extends IsolateWrapper {
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();
     values['p'] = 1100.0 + Random().nextInt(10);
-    values['a'] = 50 + Random().nextInt(10);
+    var iaqValue = 50 + Random().nextInt(10);
+    values['iaq_int'] = iaqValue;
+    AirQuality iaq = getAirQuality(iaqValue);
+    values['iaq_txt'] = iaq.toString();
+    values['iaq_color'] = iaq.color;
+
     values['i2c'] = DemoConfig().getI2C();
 
     return values;

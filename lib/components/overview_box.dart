@@ -8,7 +8,7 @@ import 'package:flutter_pi_sensor_tester/constants.dart';
 import '../dart_constants.dart';
 import 'info_box.dart';
 
-/// Info box which displays some sensor information.
+/// Overview box widget which displays some sensor information.
 class OverviewBox extends StatelessWidget {
   const OverviewBox({
     super.key,
@@ -27,10 +27,10 @@ class OverviewBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var wList = <Widget>[];
+    var widgetList = <Widget>[];
 
     // add the image
-    wList.add(SizedBox(
+    widgetList.add(SizedBox(
       width: 100,
       height: 100,
       child: Center(
@@ -40,10 +40,10 @@ class OverviewBox extends StatelessWidget {
       ),
     ));
 
-    wList.add(SizedBox(
+    widgetList.add(SizedBox(
       width: padding,
     ));
-    wList.add(Center(
+    widgetList.add(Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class OverviewBox extends StatelessWidget {
 
     return InfoBox(
       child: Row(
-        children: wList,
+        children: widgetList,
       ),
     );
   }

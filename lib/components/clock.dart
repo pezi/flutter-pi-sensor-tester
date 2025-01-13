@@ -11,7 +11,7 @@ import 'package:flutter_pi_sensor_tester/components/sensor_image_info.dart';
 import '../constants.dart';
 import 'info_box.dart';
 
-/// Clock widget with icon, time and date.
+/// Digital Clock widget with icon, time and date.
 class Clock extends StatefulWidget {
   /// Creates a clock with the optional clock icon variant [iconVersion].
   const Clock({super.key, this.iconVersion = 1});

@@ -9,12 +9,12 @@ import '../constants.dart';
 import '../isolates/isolate_helper.dart';
 import 'info_box.dart';
 
-/// Box displaying errors.
+/// Box widget for displaying errors.
 class ErrorBox extends StatelessWidget {
   final IsolateError error;
   final bool scaffold;
 
-  /// Creates a box for displaying an [error], optional with a
+  /// Creates a box widget for displaying an [error], optional with a
   /// parent [scaffold].
   const ErrorBox({super.key, required this.error, this.scaffold = false});
 

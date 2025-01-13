@@ -1,4 +1,4 @@
-// Copyright (c) 2024, the Flutter project authors.  Please see the AUTHORS file
+// Copyright (c) 2025, the Flutter project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -8,11 +8,20 @@ import '../components/clock.dart';
 import '../components/sensor_box.dart';
 import '../components/sensor_image_box.dart';
 
+// An independent file to make this code usable for Flutter web without relying
+// on the dart_periphery dependency!
+
+/// Returns a map of widgets which contains the BME680 data
 Map<int, Widget> buildBME680(Map<String, dynamic> values) {
   var temperature = values['t']! as double;
   var pressure = values['p']! as double;
   var humidity = values['h']! as double;
-  var iaq = values['a']! as int;
+
+  // air quality
+  var iaq = values['iaq_int']! as int;
+  var iaqText = values['iaq_txt']! as String;
+  var iaqColor = values['iaq_color']! as int;
+
   var counter = values['c'] as int;
   var i2c = values['i2c'] as int;
 
@@ -25,7 +34,14 @@ Map<int, Widget> buildBME680(Map<String, dynamic> values) {
   widgetMap[2] =
       Hygrometer(key: const ValueKey("2"), imageVersion: 5, humidity: humidity);
 
-  widgetMap[3] = IAQ(key: const ValueKey("3"), imageVersion: 2, iaq: iaq);
+  widgetMap[3] = IAQ(
+    key: const ValueKey("3"),
+    imageVersion: 2,
+    iaq: iaq,
+    iaqText: iaqText,
+    iaqColor: iaqColor,
+  );
+
   widgetMap[4] = SensorImageBox(
     key: const ValueKey("4"),
     sensor: "Sensor: BME680",
