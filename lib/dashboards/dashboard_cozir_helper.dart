@@ -27,7 +27,7 @@ Map<int, Widget> buildCozIR(Map<String, dynamic> values) {
   widgetMap[2] = CO2(key: const ValueKey("2"), imageVersion: 2, co2: co2);
   widgetMap[3] = SensorImageBox(
     key: const ValueKey("3"),
-    sensor: "Sensor: BME680",
+    sensor: "Sensor: CozIR",
     interface: "serial: $serial",
     icon: 'co2_v2.png',
     counter: counter,

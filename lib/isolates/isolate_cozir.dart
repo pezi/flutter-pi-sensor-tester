@@ -10,6 +10,7 @@ import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
 import '../demo_config.dart';
+import 'helper.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
@@ -30,7 +31,7 @@ class CozIRisolate extends IsolateWrapper {
     //
     //  H 00469 T 01242 Z 04894
     //  https://cdn.shopify.com/s/files/1/0019/5952/files/CozIR-A_Data_Sheet_Rev_4.7.pdf
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.cozir);
 
     // humidity
     int pos = line.indexOf("H") + 2;
@@ -87,7 +88,7 @@ class CozIRisolate extends IsolateWrapper {
 
   /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.cozir);
     values['c'] = counter;
     values['t'] = 18 + Random().nextDouble();
     values['h'] = 30 + Random().nextDouble();

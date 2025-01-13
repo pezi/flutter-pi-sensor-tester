@@ -48,7 +48,7 @@ import 'isolates/isolate_si1145.dart';
 import 'isolates/isolate_tsl2591.dart';
 
 void main() async {
-  // Sets the size of the desktop app to a fixed size to enable making
+  // Sets the size of the demo desktop app to a fixed size to enable making
   // screenshots with the same size.
   if (Platform.isWindows || Platform.isMacOS) {
     WidgetsFlutterBinding.ensureInitialized();

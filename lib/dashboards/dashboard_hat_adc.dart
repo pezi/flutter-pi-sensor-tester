@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_pi_sensor_tester/dashboards/dashboard_hat_adc_helper.dart';
 import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
 
 import '../components/clock.dart';
@@ -16,25 +17,6 @@ class DashboardHatADC extends Dashboard {
   @override
   Map<int, Widget> buildUI(TaskResult result) {
     var values = result.data!;
-    var analog = values['a']! as int;
-    var counter = values['c'] as int;
-    var pin = values['pin'] as int;
-
-    var widgetMap = <int, Widget>{};
-
-    widgetMap[0] = ADC(
-      key: const ValueKey("0"),
-      imageVersion: 1,
-      value: analog,
-    );
-    widgetMap[1] = SensorImageBox(
-      key: const ValueKey("1"),
-      sensor: "Sensor    : ADC",
-      interface: "Analog Pin: $pin",
-      icon: 'converter_v1.png',
-      counter: counter,
-    );
-    widgetMap[2] = const Clock(key: ValueKey("2"));
-    return widgetMap;
+    return buildHatADC(values);
   }
 }

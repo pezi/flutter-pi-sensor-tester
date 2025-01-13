@@ -6,6 +6,7 @@ import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
 import '../demo_config.dart';
+import 'helper.dart';
 import 'isolate_helper.dart';
 
 // measurement pause in sec
@@ -34,17 +35,19 @@ class GestureDetectorIsolate extends IsolateWrapper {
       }
     }
 
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.gesture);
 
     values['c'] = counter;
-    values['gesture'] = result.index;
+
+    values['gesture_index'] = result.index;
+    values['gesture_name'] = Gesture.values[result.index].name;
     values['i2c'] = i2c.busNum;
     return values;
   }
 
   /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.gesture);
     values['c'] = counter;
     var directionList = Gesture.values;
     values['gesture'] =
