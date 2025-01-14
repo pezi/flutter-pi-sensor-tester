@@ -5,10 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pi_sensor_tester/dashboards/dashboard_hat_adc_helper.dart';
 import 'package:flutter_pi_sensor_tester/isolates/isolate_helper.dart';
-
-import '../components/clock.dart';
-import '../components/sensor_box.dart';
-import '../components/sensor_image_box.dart';
 import 'dashboard_abstract.dart';
 
 class DashboardHatADC extends Dashboard {
@@ -16,7 +12,6 @@ class DashboardHatADC extends Dashboard {
 
   @override
   Map<int, Widget> buildUI(TaskResult result) {
-    var values = result.data!;
-    return buildHatADC(values);
+    return buildHatADC(result.data!);
   }
 }

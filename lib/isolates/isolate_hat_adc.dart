@@ -10,6 +10,7 @@ import 'package:dart_periphery/dart_periphery.dart';
 
 import '../dart_constants.dart';
 import '../demo_config.dart';
+import 'helper.dart';
 import 'isolate_helper.dart';
 
 /// Isolate to handle an analog pin/DAC of am extension hat.
@@ -50,7 +51,7 @@ class HatADCisolate extends IsolateWrapper {
 
   /// Returns the sensor data as [Map].
   Map<String, dynamic> getData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.adc);
 
     values['c'] = counter;
     var pin = DemoConfig().getAnalogPin();
@@ -61,7 +62,7 @@ class HatADCisolate extends IsolateWrapper {
 
   /// Returns simulated sensor data.
   Map<String, dynamic> getSimulatedData() {
-    var values = <String, dynamic>{};
+    var values = createDataMap(DashboardType.adc);
     values['c'] = counter;
     values['a'] = 100 + Random().nextInt(100);
     var pin = DemoConfig().getAnalogPin();

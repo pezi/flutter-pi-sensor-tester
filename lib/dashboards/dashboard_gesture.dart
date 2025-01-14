@@ -12,7 +12,6 @@ class DashboardGesture extends Dashboard {
 
   @override
   Map<int, Widget> buildUI(TaskResult result) {
-    var values = result.data!;
-    return buildGesture(values);
+    return buildGesture(result.data!);
   }
 }

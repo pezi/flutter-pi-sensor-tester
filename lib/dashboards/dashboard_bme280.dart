@@ -12,7 +12,6 @@ class DashboardBME280 extends Dashboard {
 
   @override
   Map<int, Widget> buildUI(TaskResult result) {
-    var values = result.data!;
-    return buildBME280(values);
+    return buildBME280(result.data!);
   }
 }
