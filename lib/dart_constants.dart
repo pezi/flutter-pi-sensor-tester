@@ -10,6 +10,7 @@ enum DashboardType {
       'sensor_v1.png', 'Temperature, Humidity, Pressure, AQI', Interface.i2c),
   bme280('sensor_v3.png', 'Temperature, Humidity, Pressure', Interface.i2c),
   sht31('thermometer_v4.png', 'Temperature', Interface.i2c),
+  sht4x('thermometer_v4.png', 'Temperature', Interface.i2c),
   sgp30('iaq_v1.png', 'Air quality sensor', Interface.i2c),
   cozir('co2_v2.png', 'Serial CO₂,Temperature, Humidity sensor',
       Interface.serial),

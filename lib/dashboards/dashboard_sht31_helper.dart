@@ -27,7 +27,7 @@ Map<int, Widget> buildSHT31(Map<String, dynamic> values) {
   widgetMap[2] = SensorImageBox(
     key: const ValueKey("2"),
     sensor: "Sensor: SHT31",
-    interface: "I2C Bus: $i2c}",
+    interface: "I2C Bus: $i2c",
     icon: 'thermometer_v4.png',
     counter: counter,
   );

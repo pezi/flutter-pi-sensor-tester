@@ -31,6 +31,7 @@ import 'dashboards/dashboard_mlx90615.dart';
 import 'dashboards/dashboard_sdc30.dart';
 import 'dashboards/dashboard_sgp30.dart';
 import 'dashboards/dashboard_sht31.dart';
+import 'dashboards/dashboard_sht4x.dart';
 import 'dashboards/dashboard_si1145.dart';
 import 'dashboards/dashboard_tsl2591.dart';
 import 'demo_config.dart';
@@ -127,6 +128,10 @@ Widget _createDashboard(ParentUpdateCallback callback) {
     case DashboardType.sht31:
       return DashboardSHT31(
         isolateWrapper: SHT31isolate(DashboardType.sht31.name, json),
+      );
+    case DashboardType.sht4x:
+      return DashboardSHT4x(
+        isolateWrapper: SHT31isolate(DashboardType.sht4x.name, json),
       );
     case DashboardType.mcp9808:
       return DashboardMCP9808(
