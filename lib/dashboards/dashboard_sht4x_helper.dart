@@ -12,7 +12,7 @@ import '../components/sensor_image_box.dart';
 // on the dart_periphery dependency!
 
 /// Returns a map of widgets which contains the SHT31 sensor data.
-Map<int, Widget> buildSHT31(Map<String, dynamic> values) {
+Map<int, Widget> buildSHT4x(Map<String, dynamic> values) {
   var temperature = values['t']! as double;
   var humidity = values['h']! as double;
   var counter = values['c'] as int;
@@ -26,8 +26,8 @@ Map<int, Widget> buildSHT31(Map<String, dynamic> values) {
       Hygrometer(key: const ValueKey("1"), imageVersion: 5, humidity: humidity);
   widgetMap[2] = SensorImageBox(
     key: const ValueKey("2"),
-    sensor: "Sensor: SHT31",
-    interface: "I2C Bus: $i2c}",
+    sensor: "Sensor: SHT4x",
+    interface: "I2C Bus: $i2c",
     icon: 'thermometer_v4.png',
     counter: counter,
   );

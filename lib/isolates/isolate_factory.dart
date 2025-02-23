@@ -15,6 +15,7 @@ import 'isolate_leds.dart';
 import 'isolate_demo.dart';
 import 'isolate_hat_adc.dart';
 import 'isolate_sdc30.dart';
+import 'isolate_sht4x.dart';
 import 'isolate_si1145.dart';
 import 'isolate_tsl2591.dart';
 
@@ -31,6 +32,9 @@ class IsolateClassFactory {
     SHT31isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             SHT31isolate(isolateId, data as String),
+    SHT4xIsolate.empty().runtimeType.toString():
+        (String isolateId, Object data) =>
+            SHT4xIsolate(isolateId, data as String),
     SGP30isolate.empty().runtimeType.toString():
         (String isolateId, Object data) =>
             SGP30isolate(isolateId, data as String),
